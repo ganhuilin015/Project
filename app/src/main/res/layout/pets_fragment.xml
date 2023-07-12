@@ -1,0 +1,22 @@
+<!-- earn_fragment.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/petsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="This is Pets Page"
+        android:textSize="16sp"
+        android:background="@android:color/transparent"
+        android:padding="50dp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+
+    <!-- Rest of your layout -->
+
+</LinearLayout>

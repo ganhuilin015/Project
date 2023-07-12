@@ -1,0 +1,22 @@
+<!-- earn_fragment.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_yellow"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/profileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="This is Profile Page"
+        android:background="@android:color/transparent"
+        android:textSize="16sp"
+        android:padding="50dp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+
+    <!-- Rest of your layout -->
+
+</LinearLayout>

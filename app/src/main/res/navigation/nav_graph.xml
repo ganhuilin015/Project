@@ -1,0 +1,38 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/start_destination">
+
+    <fragment
+        android:id="@+id/destination_home"
+        android:name="com.example.myanimal.HomeFragment"
+        android:label="Home">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_pets"
+        android:name="com.example.myanimal.PetsFragment"
+        android:label="Pets">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_earn"
+        android:name="com.example.myanimal.EarnFragment"
+        android:label="Earn">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_profile"
+        android:name="com.example.myanimal.ProfileFragment"
+        android:label="Profile">
+    </fragment>
+
+<!--     Start Destination -->
+    <fragment
+        android:id="@+id/start_destination"
+        android:name="com.example.myanimal.HomeFragment"
+        android:label="Start Destination">
+    </fragment>
+
+</navigation>
