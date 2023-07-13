@@ -1,29 +1,31 @@
 <!-- earn_fragment.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/yellow"
     android:gravity="center"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/earnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttons"
+        android:layout_width="255dp"
+        android:layout_height="275dp"
+        android:background="@color/white"
         android:padding="100dp"
-        android:text="Click Me" />
+        android:text="Click Me"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/messageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="@android:color/transparent"
+        android:gravity="center"
         android:text="Press the button to earn coins"
         android:textColor="@color/black"
-        android:visibility="visible"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="visible" />
 
     <!-- Rest of your layout -->
 

@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#2196F3</color>
     <color name="light_yellow">#EEE7A5</color>
+    <color name="light_pink">#EEA5C2</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="pokemon_yellow">#FFFF00</color>
 </resources>
