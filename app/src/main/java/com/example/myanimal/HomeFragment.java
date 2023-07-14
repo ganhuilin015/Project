@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
 
 public class HomeFragment extends Fragment {
 
@@ -22,6 +25,9 @@ public class HomeFragment extends Fragment {
         Log.d("Home", "In Home Page");
         TextView messageTextView = view.findViewById(R.id.homeTextView);
         messageTextView.setText("This is Home Page");
+
+        ImageView gifImageView = view.findViewById(R.id.gifImageView);
+        Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
 
         // Rest of your code
 
