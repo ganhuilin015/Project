@@ -38,7 +38,7 @@ public class NavBar extends AppCompatActivity {
 
         int homeColor = ContextCompat.getColor(this, R.color.white);
         int petsColor = ContextCompat.getColor(this, R.color.light_yellow);
-        int earnColor = ContextCompat.getColor(this, R.color.light_pink);
+        int earnColor = ContextCompat.getColor(this, R.color.white);
         int profileColor = ContextCompat.getColor(this, R.color.teal_200);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -69,7 +69,7 @@ public class NavBar extends AppCompatActivity {
                         getWindow().setNavigationBarColor(Color.parseColor("#FF03DAC5"));
                         bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FF03DAC5"));
                         getWindow().setStatusBarColor(Color.parseColor("#FF03DAC5"));
-                        main.setBackgroundColor(Color.parseColor("#FFEB3B"));
+                        main.setBackgroundColor(Color.parseColor("#EEA5C2"));
                         bottomNavigation.setCircleColor(earnColor);
                         break;
 

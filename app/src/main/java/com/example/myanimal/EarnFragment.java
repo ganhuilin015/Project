@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -22,13 +23,11 @@ public class EarnFragment extends Fragment {
             navBar = (NavBar) getActivity();
         }
 
-        Button earnButton = view.findViewById(R.id.earnButton);
-        earnButton.setBackgroundResource(R.drawable.pokemon);
+        ImageButton earnButton = view.findViewById(R.id.earnButton);
         earnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 coinCount = navBar.getCoinCount();
-                // Perform your desired action when the button is clicked
                 // Update the coin count
                 coinCount++;
                 navBar.updateCoinCount(coinCount);

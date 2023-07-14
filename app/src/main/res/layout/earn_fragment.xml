@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/light_pink"
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
+    <ImageButton
         android:id="@+id/earnButton"
-        android:layout_width="255dp"
-        android:layout_height="275dp"
-        android:background="@color/white"
-        android:padding="100dp"
-        android:text="Click Me"
-        android:textColor="@color/black" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="40dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/pokemon" />
 
     <TextView
         android:id="@+id/messageTextView"
