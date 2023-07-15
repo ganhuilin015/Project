@@ -7,16 +7,14 @@
     android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/homeTextView"
+
+    <ImageView
+        android:id="@+id/statusbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:padding="0dp"
-        android:text="This is Home Page"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:src="@drawable/statusbarfull"
+        android:visibility="visible" />
+
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"

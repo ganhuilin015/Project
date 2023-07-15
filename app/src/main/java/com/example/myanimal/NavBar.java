@@ -1,13 +1,16 @@
 package com.example.myanimal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,13 +23,15 @@ public class NavBar extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private NavController navController;
     RelativeLayout main;
+    private Handler handler = new Handler();
+    private Runnable updateRunnable;
+    private HomeFragment homeFragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         main = findViewById(R.id.main);
 
@@ -118,9 +123,27 @@ public class NavBar extends AppCompatActivity {
         });
 
 
-
         coinCountTextView = findViewById(R.id.coinCountTextView);
 
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        if (fragment instanceof NavHostFragment) {
+            NavHostFragment navHostFragment = (NavHostFragment) fragment;
+            homeFragment = (HomeFragment) navHostFragment.getChildFragmentManager().getFragments().get(0);
+        }
+
+        updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                int hungerValue = homeFragment.getHunger();
+                hungerValue--;
+                if (homeFragment != null) {
+                    homeFragment.updateHungerStatus(hungerValue);
+                }
+                handler.postDelayed(this, 1000); // Update every 1 seconds
+            }
+        };
+
+        handler.postDelayed(updateRunnable, 1000);
     }
 
     public void updateCoinCount(int count) {
@@ -132,4 +155,19 @@ public class NavBar extends AppCompatActivity {
         int coin = Integer.parseInt(text);
         return coin;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(updateRunnable);
+    }
+
+
+
+}
