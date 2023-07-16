@@ -38,14 +38,6 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
-    public static HomeFragment newInstance(int hunger) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putInt(HUNGER_KEY, hunger);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_fragment, container, false);
 
@@ -56,7 +48,7 @@ public class HomeFragment extends Fragment {
             hunger = getArguments().getInt(HUNGER_KEY);
         }
 
-        updateHungerStatus(hunger);
+//        updateHungerStatus(hunger);
 
         return view;
     }

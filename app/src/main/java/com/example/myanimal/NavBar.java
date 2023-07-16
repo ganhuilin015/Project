@@ -16,6 +16,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
+import com.google.firebase.FirebaseApp;
+import androidx.annotation.NonNull;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+
 public class NavBar extends AppCompatActivity {
 
     private TextView coinCountTextView;
@@ -33,22 +42,25 @@ public class NavBar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         main = findViewById(R.id.main);
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.profile));
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.pets));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.earn));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.profile));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.earn));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.setting));
+
 
         int homeColor = ContextCompat.getColor(this, R.color.white);
         int petsColor = ContextCompat.getColor(this, R.color.light_yellow);
         int earnColor = ContextCompat.getColor(this, R.color.white);
         int profileColor = ContextCompat.getColor(this, R.color.teal_200);
+        int settingColor = ContextCompat.getColor(this, R.color.white);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        getWindow().setNavigationBarColor(Color.parseColor("#EEE7A5"));
-        getWindow().setStatusBarColor(Color.parseColor("#EEE7A5"));
+
 
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
@@ -57,9 +69,11 @@ public class NavBar extends AppCompatActivity {
                 // your codes
                 switch (item.getId()){
                     case 1:
-                        bottomNavigation.setBackgroundBottomColor(Color.parseColor("#EEE7A5"));
+                        getWindow().setNavigationBarColor(Color.parseColor("#FFBB86FC"));
+                        bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FFBB86FC"));
+                        getWindow().setStatusBarColor(Color.parseColor("#FFBB86FC"));
                         main.setBackgroundColor(Color.parseColor("#2196F3"));
-                        bottomNavigation.setCircleColor(homeColor);
+                        bottomNavigation.setCircleColor(profileColor);
                         break;
 
                     case 2:
@@ -71,20 +85,31 @@ public class NavBar extends AppCompatActivity {
                         break;
 
                     case 3:
+                        bottomNavigation.setBackgroundBottomColor(Color.parseColor("#EEE7A5"));
+                        main.setBackgroundColor(Color.parseColor("#EEA5C2"));
+                        bottomNavigation.setCircleColor(homeColor);
+                        getWindow().setNavigationBarColor(Color.parseColor("#EEE7A5"));
+                        getWindow().setStatusBarColor(Color.parseColor("#EEE7A5"));
+                        break;
+
+
+                    case 4:
                         getWindow().setNavigationBarColor(Color.parseColor("#FF03DAC5"));
                         bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FF03DAC5"));
                         getWindow().setStatusBarColor(Color.parseColor("#FF03DAC5"));
-                        main.setBackgroundColor(Color.parseColor("#EEA5C2"));
+                        main.setBackgroundColor(Color.parseColor("#EEE7A5"));
                         bottomNavigation.setCircleColor(earnColor);
                         break;
 
-                    case 4:
-                        getWindow().setNavigationBarColor(Color.parseColor("#FFBB86FC"));
-                        bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FFBB86FC"));
-                        getWindow().setStatusBarColor(Color.parseColor("#FFBB86FC"));
-                        main.setBackgroundColor(Color.parseColor("#EEE7A5"));
-                        bottomNavigation.setCircleColor(profileColor);
+                    case 5:
+                        getWindow().setNavigationBarColor(Color.parseColor("#2196F3"));
+                        bottomNavigation.setBackgroundBottomColor(Color.parseColor("#2196F3"));
+                        getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
+                        main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
+                        bottomNavigation.setCircleColor(settingColor);
                         break;
+
+
                 }
 
             }
@@ -109,6 +134,11 @@ public class NavBar extends AppCompatActivity {
                     case 4:
                         navController.navigate(R.id.destination_profile);
                         break;
+
+                    case 5:
+                        navController.navigate(R.id.destination_setting);
+                        break;
+
 
                 }
             }
@@ -135,7 +165,9 @@ public class NavBar extends AppCompatActivity {
             @Override
             public void run() {
                 int hungerValue = homeFragment.getHunger();
-                hungerValue--;
+                if (hungerValue > 0){
+                    hungerValue--;
+                }
                 if (homeFragment != null) {
                     homeFragment.updateHungerStatus(hungerValue);
                 }
@@ -144,6 +176,34 @@ public class NavBar extends AppCompatActivity {
         };
 
         handler.postDelayed(updateRunnable, 1000);
+
+
+        FirebaseApp.initializeApp(this);
+
+        // Get a reference to the Firebase Realtime Database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        // Read data from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and whenever data at this location is updated.
+                Long value = dataSnapshot.getValue(Long.class);
+                if (value != null) {
+                    Log.d("Firebase", "Value is: " + value);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("Firebase", "Failed to read value.", error.toException());
+            }
+        });
+
+        // Write data to the database
+        myRef.setValue(homeFragment.getHunger());
     }
 
     public void updateCoinCount(int count) {

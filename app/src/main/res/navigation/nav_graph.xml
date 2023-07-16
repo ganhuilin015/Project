@@ -28,6 +28,37 @@
         android:label="Profile">
     </fragment>
 
+    <fragment
+        android:id="@+id/destination_setting"
+        android:name="com.example.myanimal.SettingFragment"
+        android:label="Setting">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_login"
+        android:name="com.example.myanimal.LoginFragment"
+        android:label="Login">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_register"
+        android:name="com.example.myanimal.RegisterFragment"
+        android:label="Register">
+    </fragment>
+
+    <action
+        android:id="@+id/Setting_to_Login"
+        app:destination="@id/destination_login" />
+
+    <action
+        android:id="@+id/Setting_to_Register"
+        app:destination="@id/destination_register" />
+
+    <action
+        android:id="@+id/to_Setting"
+        app:destination="@id/destination_setting" />
+
+
 <!--     Start Destination -->
     <fragment
         android:id="@+id/start_destination"
