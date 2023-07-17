@@ -1,12 +1,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/start_destination">
+    app:startDestination="@+id/destination_home">
 
     <fragment
-        android:id="@+id/destination_home"
-        android:name="com.example.myanimal.HomeFragment"
-        android:label="Home">
+        android:id="@+id/destination_profile"
+        android:name="com.example.myanimal.ProfileFragment"
+        android:label="Profile">
     </fragment>
 
     <fragment
@@ -17,15 +17,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/destination_earn"
-        android:name="com.example.myanimal.EarnFragment"
-        android:label="Earn">
+        android:id="@+id/destination_home"
+        android:name="com.example.myanimal.HomeFragment"
+        android:label="Home">
+
+        <argument
+            android:name="hungerValue"
+            app:argType="integer" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/destination_profile"
-        android:name="com.example.myanimal.ProfileFragment"
-        android:label="Profile">
+        android:id="@+id/destination_earn"
+        android:name="com.example.myanimal.EarnFragment"
+        android:label="Earn">
     </fragment>
 
     <fragment
@@ -58,12 +63,5 @@
         android:id="@+id/to_Setting"
         app:destination="@id/destination_setting" />
 
-
-<!--     Start Destination -->
-    <fragment
-        android:id="@+id/start_destination"
-        android:name="com.example.myanimal.HomeFragment"
-        android:label="Start Destination">
-    </fragment>
 
 </navigation>
