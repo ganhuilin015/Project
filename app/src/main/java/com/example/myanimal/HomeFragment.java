@@ -1,22 +1,14 @@
 package com.example.myanimal;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -33,6 +25,8 @@ public class HomeFragment extends Fragment {
     private View view;
     ;
     private int hunger = 120;
+    private int tired = 120;
+
     private static final String HUNGER_PREF = "hunger_pref";
     private static final String HUNGER_KEY = "hunger_key";
     private static final String IMAGE_RES_KEY = "image_res_key";
@@ -51,9 +45,24 @@ public class HomeFragment extends Fragment {
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hunger++;
+                if (hunger < 121) {
+                    hunger++;
+                }
                 viewModel.setHunger(hunger);
                 System.out.println(hunger);
+            }
+        });
+
+
+        ImageButton sleepButton = view.findViewById(R.id.sleepButton);
+        sleepButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tired < 121){
+                    tired++;
+                }
+                viewModel.setTired(tired);
+                System.out.println(tired);
             }
         });
 
@@ -70,8 +79,16 @@ public class HomeFragment extends Fragment {
                 updateHungerStatus(hunger);
             }
         });
-    }
 
+        viewModel.getTired().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer updatedTired) {
+                tired = updatedTired;
+                Log.d("onHomeCreateView_tired", String.valueOf(tired));
+                updateTiredStatus(tired);
+            }
+        });
+    }
 
     public void updateHungerStatus(int updateHunger) {
         Log.d("updateHungerStatus", String.valueOf(updateHunger));
@@ -116,6 +133,51 @@ public class HomeFragment extends Fragment {
 
     public int getHunger(){
         return this.hunger;
+    }
+
+    public void updateTiredStatus(int updateTired) {
+        Log.d("updateTiredStatus", String.valueOf(updateTired));
+        tired = updateTired;
+
+        ImageView statusBar = view.findViewById(R.id.statusbar_Tired);
+
+        // Get the image resource ID based on the hunger value
+        int imageResId_Tired = getImageResourceId_Tired();
+
+        // Set the status bar image resource
+        statusBar.setImageResource(imageResId_Tired);
+    }
+
+    private int getImageResourceId_Tired() {
+        if (this.tired >= 110) {
+            return R.drawable.statusbarfull;
+        } else if (this.tired < 110 && this.tired >= 100) {
+            return R.drawable.statusbar10;
+        } else if (this.tired < 100 && this.tired >= 90) {
+            return R.drawable.statusbar9;
+        } else if (this.tired < 90 && this.tired >= 80) {
+            return R.drawable.statusbar8;
+        } else if (this.tired < 80 && this.tired >= 70) {
+            return R.drawable.statusbar7;
+        } else if (this.tired < 70 && this.tired >= 60) {
+            return R.drawable.statusbar6;
+        } else if (this.tired < 60 && this.tired >= 50) {
+            return R.drawable.statusbar5;
+        } else if (this.tired < 50 && this.tired >= 40) {
+            return R.drawable.statusbar4;
+        } else if (this.tired < 40 && this.tired >= 30) {
+            return R.drawable.statusbar3;
+        } else if (this.tired < 30 && this.tired >= 20) {
+            return R.drawable.statusbar2;
+        } else if (this.tired < 20 && this.tired >= 10) {
+            return R.drawable.statusbar1;
+        } else {
+            return R.drawable.statusbar0;
+        }
+    }
+
+    public int getTired(){
+        return this.tired;
     }
 }
 

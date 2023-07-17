@@ -190,16 +190,26 @@ public class NavBar extends AppCompatActivity {
         // Initialize ViewModel
         viewModel = new ViewModelProvider(this).get(HungerViewModel.class);
         viewModel.setHunger(120);
+        viewModel.setTired(120);
 
         updateRunnable = new Runnable() {
             @Override
             public void run() {
                 int hungerValue = viewModel.getHunger().getValue();
+                int tiredValue = viewModel.getTired().getValue();
+
                 if (hungerValue > 0){
                     hungerValue--;
                     viewModel.setHunger(hungerValue);
                     myRef.setValue(hungerValue);
                 }
+
+                if (tiredValue > 0){
+                    tiredValue--;
+                    viewModel.setTired(tiredValue);
+                    myRef.setValue(tiredValue);
+                }
+
                 handler.postDelayed(this, 20000); // Update every 1 seconds
 
             }
@@ -223,7 +233,6 @@ public class NavBar extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @Override
