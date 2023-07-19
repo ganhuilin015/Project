@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,11 +14,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 import com.google.firebase.FirebaseApp;
@@ -29,7 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class NavBar extends AppCompatActivity {
+public class NavBar extends AppCompatActivity implements ProfileFragment.OnChangeImageButtonClickListener{
 
     private TextView coinCountTextView;
     private MeowBottomNavigation bottomNavigation;
@@ -39,7 +47,10 @@ public class NavBar extends AppCompatActivity {
     private Handler handler = new Handler();
     private Runnable updateRunnable;
     private HomeFragment homeFragment;
+    private ProfileFragment profileFragment;
     private HungerViewModel viewModel;
+    private static final int REQUEST_PICK_IMAGE = 101;
+    private static final int REQUEST_CAPTURE_IMAGE = 102;
 
 
 
@@ -218,6 +229,8 @@ public class NavBar extends AppCompatActivity {
 
         handler.postDelayed(updateRunnable, 1000);
 
+
+
     }
 
     public void updateCoinCount(int count) {
@@ -239,6 +252,27 @@ public class NavBar extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(updateRunnable);
+    }
+
+    @Override
+    public void onChangeImageButtonClick() {
+        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickImageIntent, REQUEST_PICK_IMAGE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+            Fragment fragment = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
+            if (fragment instanceof ProfileFragment) {
+                ((ProfileFragment) fragment).onImageSelected(selectedImageUri);
+            }
+
+        } else if (requestCode == REQUEST_CAPTURE_IMAGE && resultCode == RESULT_OK) {
+            // Handle the captured image here (save locally or upload to Firebase Storage)
+        }
     }
 
 

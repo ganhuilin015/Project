@@ -21,10 +21,6 @@
         android:name="com.example.myanimal.HomeFragment"
         android:label="Home">
 
-        <argument
-            android:name="hungerValue"
-            app:argType="integer" />
-
     </fragment>
 
     <fragment

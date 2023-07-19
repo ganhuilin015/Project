@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_yellow"
     android:gravity="center"
     android:orientation="vertical">
@@ -9,7 +10,7 @@
     <TextView
         android:id="@+id/profileTextView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="This is Profile Page"
         android:background="@android:color/transparent"
         android:textSize="16sp"
@@ -17,6 +18,42 @@
         android:gravity="center"
         android:textColor="@color/black"/>
 
-    <!-- Rest of your layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/pokemon"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/circle_background"
+            android:scaleType="centerCrop" />
+
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/changePictureButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/edit" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

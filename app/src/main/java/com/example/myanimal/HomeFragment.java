@@ -38,6 +38,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_fragment, container, false);
 
+        if (getActivity() instanceof NavBar) {
+            navBar = (NavBar) getActivity();
+        }
+
         ImageView gifImageView = view.findViewById(R.id.gifImageView);
         Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
 
@@ -49,6 +53,10 @@ public class HomeFragment extends Fragment {
                     hunger++;
                 }
                 viewModel.setHunger(hunger);
+                int coinValue = navBar.getCoinCount();
+                coinValue = coinValue - 10;
+                Log.d("Home Coin", String.valueOf(coinValue));
+                navBar.updateCoinCount(coinValue);
                 System.out.println(hunger);
             }
         });
@@ -62,6 +70,10 @@ public class HomeFragment extends Fragment {
                     tired++;
                 }
                 viewModel.setTired(tired);
+                int coinValue_tired = navBar.getCoinCount();
+                coinValue_tired = coinValue_tired - 10;
+                Log.d("Home Tired Coin", String.valueOf(coinValue_tired));
+                navBar.updateCoinCount(coinValue_tired);
                 System.out.println(tired);
             }
         });
@@ -132,6 +144,7 @@ public class HomeFragment extends Fragment {
     }
 
     public int getHunger(){
+
         return this.hunger;
     }
 
