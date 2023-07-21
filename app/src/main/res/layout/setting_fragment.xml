@@ -8,17 +8,10 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/SettingToLogin_Button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Navigate to Login Page" />
-
-    <Button
-        android:id="@+id/SettingToRegister_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Navigate to Register Page" />
+        android:text="This is Setting page"/>
 
 
 </LinearLayout>

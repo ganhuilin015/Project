@@ -1,7 +1,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/destination_home">
+    app:startDestination="@+id/destination_authentication">
+
+
+    <fragment
+        android:id="@+id/destination_authentication"
+        android:name="com.example.myanimal.AuthenticationInterface"
+        android:label="Authentication">
+    </fragment>
+
+    <activity
+        android:id="@+id/destination_navbar"
+        android:name="com.example.myanimal.NavBar"
+        android:label="NavBar"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+
+    <activity
+        android:id="@+id/destination_splashActivity"
+        android:name="com.example.myanimal.AuthenticationActivity"
+        android:label="NavBar"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+
 
     <fragment
         android:id="@+id/destination_profile"
@@ -35,29 +57,11 @@
         android:label="Setting">
     </fragment>
 
-    <fragment
-        android:id="@+id/destination_login"
-        android:name="com.example.myanimal.LoginFragment"
-        android:label="Login">
-    </fragment>
-
-    <fragment
-        android:id="@+id/destination_register"
-        android:name="com.example.myanimal.RegisterFragment"
-        android:label="Register">
-    </fragment>
 
     <action
-        android:id="@+id/Setting_to_Login"
-        app:destination="@id/destination_login" />
+        android:id="@+id/to_SplashActivity"
+        app:destination="@id/destination_splashActivity"/>
 
-    <action
-        android:id="@+id/Setting_to_Register"
-        app:destination="@id/destination_register" />
-
-    <action
-        android:id="@+id/to_Setting"
-        app:destination="@id/destination_setting" />
 
 
 </navigation>

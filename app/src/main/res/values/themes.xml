@@ -5,4 +5,7 @@
         <item name="itemTextColor">@color/black</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize other attributes as needed -->
+    </style>
 </resources>

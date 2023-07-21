@@ -25,24 +25,6 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.setting_fragment, container, false);
 
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        buttonNavigateToLogin = view.findViewById(R.id.SettingToLogin_Button);
-        buttonNavigateToRegister = view.findViewById(R.id.SettingToRegister_Button);
-
-        buttonNavigateToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to Login
-                navController.navigate(R.id.Setting_to_Login);
-            }
-        });
-
-        buttonNavigateToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to Register
-                navController.navigate(R.id.Setting_to_Register);
-            }
-        });
 
         return view;
     }

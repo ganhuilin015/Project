@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModel;
 public class HungerViewModel extends ViewModel {
     private MutableLiveData<Integer> hunger = new MutableLiveData<>();
     private MutableLiveData<Integer> tired = new MutableLiveData<>();
-    private MutableLiveData<String> profileImage = new MutableLiveData<>();
+    private String profileImage = new String();
+    private int colorPicked = 0xFFFFFFFF ;
 
 
     public LiveData<Integer> getHunger(){
@@ -31,13 +32,18 @@ public class HungerViewModel extends ViewModel {
     }
 
     public void setImageUri(String profileImg){
-        profileImage.setValue(profileImg);
-        Log.d("profile Img", String.valueOf(profileImg));
-        Log.d("profile Image", String.valueOf(profileImage));
+        this.profileImage = profileImg;
     }
 
-    public LiveData<String> getImageUri(){
-        Log.d("get profile image", String.valueOf(profileImage));
+    public String getImageUri(){
         return profileImage;
+    }
+
+    public void setColorPicked(int color){
+        this.colorPicked = color;
+    }
+
+    public int getColorPicked(){
+        return colorPicked;
     }
 }

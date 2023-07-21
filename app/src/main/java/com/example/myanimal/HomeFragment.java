@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -49,15 +51,21 @@ public class HomeFragment extends Fragment {
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hunger < 121) {
+                if (hunger < 120) {
                     hunger++;
                 }
                 viewModel.setHunger(hunger);
                 int coinValue = navBar.getCoinCount();
-                coinValue = coinValue - 10;
-                Log.d("Home Coin", String.valueOf(coinValue));
-                navBar.updateCoinCount(coinValue);
-                System.out.println(hunger);
+
+                if (coinValue > 9){
+                    coinValue = coinValue - 10;
+                    Log.d("Home Coin", String.valueOf(coinValue));
+                    navBar.updateCoinCount(coinValue);
+                    System.out.println(hunger);
+                } else {
+                    Toast.makeText(requireContext(), "Insufficient coin", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -66,14 +74,10 @@ public class HomeFragment extends Fragment {
         sleepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tired < 121){
+                if (tired < 120){
                     tired++;
                 }
                 viewModel.setTired(tired);
-                int coinValue_tired = navBar.getCoinCount();
-                coinValue_tired = coinValue_tired - 10;
-                Log.d("Home Tired Coin", String.valueOf(coinValue_tired));
-                navBar.updateCoinCount(coinValue_tired);
                 System.out.println(tired);
             }
         });
@@ -144,7 +148,6 @@ public class HomeFragment extends Fragment {
     }
 
     public int getHunger(){
-
         return this.hunger;
     }
 
@@ -190,6 +193,7 @@ public class HomeFragment extends Fragment {
     }
 
     public int getTired(){
+
         return this.tired;
     }
 }

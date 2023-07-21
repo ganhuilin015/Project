@@ -3,6 +3,6 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="10dp"
-        android:color="@color/black" /> <!-- Replace with your desired border color -->
+        android:color="@color/white" /> <!-- Replace with your desired border color -->
     <corners android:radius="8dp" />
 </shape>

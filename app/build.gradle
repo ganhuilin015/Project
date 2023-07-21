@@ -82,14 +82,17 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
 
+//  Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
 
+//    Allow picking of color
+    implementation 'com.github.yukuku:ambilwarna:2.0.1'
 
-
-
-
+//    Google sign in
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    implementation 'com.google.firebase:firebase-firestore:23.0.0'
 
 }

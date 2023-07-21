@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -62,8 +63,12 @@ public class PetsFragment extends Fragment {
                     CharSequence costChar = costText.getText();
                     int cost = Integer.parseInt(costChar.toString());
 
-                    coinCount = coinCount - cost;
-                    navBar.updateCoinCount(coinCount);
+                    if (coinCount > cost){
+                        coinCount = coinCount - cost;
+                        navBar.updateCoinCount(coinCount);
+                    } else {
+                        Toast.makeText(requireContext(), "Insufficient coin", Toast.LENGTH_SHORT).show();
+                    }
 
                     TextView messageTextView = view.findViewById(textViewIds[index]);
                     messageTextView.setText(String.valueOf(cost));
