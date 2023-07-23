@@ -18,7 +18,7 @@
     </activity>
 
     <activity
-        android:id="@+id/destination_splashActivity"
+        android:id="@+id/destination_authenticationActivity"
         android:name="com.example.myanimal.AuthenticationActivity"
         android:label="NavBar"
         android:theme="@style/AppTheme.NoActionBar">
@@ -57,10 +57,24 @@
         android:label="Setting">
     </fragment>
 
+    <fragment
+        android:id="@+id/destination_update_profile"
+        android:name="com.example.myanimal.UpdateProfileFragment"
+        android:label="UpdateProfile">
+    </fragment>
+
 
     <action
-        android:id="@+id/to_SplashActivity"
-        app:destination="@id/destination_splashActivity"/>
+        android:id="@+id/to_AuthenticationActivity"
+        app:destination="@id/destination_authenticationActivity"/>
+
+    <action
+        android:id="@+id/to_update_profile"
+        app:destination="@id/destination_update_profile"/>
+
+    <action
+        android:id="@+id/to_profile"
+        app:destination="@id/destination_profile"/>
 
 
 

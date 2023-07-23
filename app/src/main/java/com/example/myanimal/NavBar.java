@@ -23,9 +23,11 @@
     import com.google.firebase.database.DatabaseReference;
     import com.google.firebase.database.FirebaseDatabase;
     import com.google.firebase.database.ValueEventListener;
+    import com.google.firebase.firestore.FirebaseFirestore;
+    import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 
-    public class NavBar extends AppCompatActivity implements ProfileFragment.OnChangeImageButtonClickListener{
+    public class NavBar extends AppCompatActivity implements ProfileFragment.OnChangeImageButtonClickListener, UpdateProfileFragment.ProfileUpdateListener{
 
         private TextView coinCountTextView;
         private MeowBottomNavigation bottomNavigation;
@@ -148,8 +150,7 @@
             bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
                 @Override
                 public void onReselectItem(MeowBottomNavigation.Model item) {
-                    // Handle the reselect event for the item
-                    // Left it empty if you don't need to perform any action on reselect
+                    // Left it empty because don't need to perform any action on reselect
                 }
             });
 
@@ -157,6 +158,12 @@
             coinCountTextView = findViewById(R.id.coinCountTextView);
 
             FirebaseApp.initializeApp(this);
+
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setPersistenceEnabled(true)
+                    .build();
+            FirebaseFirestore.getInstance().setFirestoreSettings(settings);
+
 
             // Get a reference to the Firebase Realtime Database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -209,7 +216,6 @@
 
             handler.postDelayed(updateRunnable, 1000);
 
-
         }
 
         public void updateCoinCount(int count) {
@@ -255,4 +261,12 @@
 
 
         }
+        @Override
+        public void onUpdateProfile(String name, String bio, String dob) {
+            viewModel.setProfileName(name);
+            viewModel.setProfileBio(bio);
+            viewModel.setProfileDOB(dob);
+        }
+
+
     }

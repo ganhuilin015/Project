@@ -1,8 +1,5 @@
 package com.example.myanimal;
 
-import android.net.Uri;
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -12,6 +9,11 @@ public class HungerViewModel extends ViewModel {
     private MutableLiveData<Integer> tired = new MutableLiveData<>();
     private String profileImage = new String();
     private int colorPicked = 0xFFFFFFFF ;
+    private String profileName = "Your Name";
+    private String profileDOB = "Date-of-birth";
+    private String profileBio = "Your Bio";
+
+
 
 
     public LiveData<Integer> getHunger(){
@@ -44,6 +46,37 @@ public class HungerViewModel extends ViewModel {
     }
 
     public int getColorPicked(){
+
         return colorPicked;
     }
+
+    public String getProfileName(){
+
+        return profileName;
+    }
+
+    public void setProfileName(String name){
+
+        this.profileName = name;
+    }
+
+    public String getProfileBio(){
+
+        return profileBio;
+    }
+
+    public void setProfileBio(String bio){
+        this.profileBio = bio;
+    }
+
+    public String getProfileDOB(){
+
+        return profileDOB;
+    }
+
+    public void setProfileDOB(String dob){
+
+        this.profileDOB = dob;
+    }
+
 }

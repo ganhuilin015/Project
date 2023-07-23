@@ -1,5 +1,6 @@
 <!-- earn_fragment.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,12 +28,12 @@
         android:orientation="vertical"
         android:layout_above="@id/nav_host_fragment" >
 
-        <Button
+        <ImageButton
             android:id="@+id/Login_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log In"
-            android:textColor="@color/black"/>
+            android:background="@android:color/transparent"
+            android:src="@drawable/loginbutton" />
 
         <Button
             android:id="@+id/Register_Button"

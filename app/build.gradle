@@ -87,6 +87,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.firebase:firebase-firestore:23.0.0' // Replace with the latest version
 
 //    Allow picking of color
     implementation 'com.github.yukuku:ambilwarna:2.0.1'

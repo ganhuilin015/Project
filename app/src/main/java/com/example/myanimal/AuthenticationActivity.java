@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -42,7 +45,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
     private static final int RC_SIGN_IN = 100;
     private NavController navController;
-    private Button loginButton;
+    private ImageButton loginButton;
     private Button registerButton;
     private Button loginNavigateToSetting;
 
@@ -72,9 +75,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
             Log.d("User not authenticated", "Going to AuthenticationFragment");
             setContentView(R.layout.authentication_fragment);
 
-            //Set login button variable and change background color
+            //Set login button variable
             loginButton = findViewById(R.id.Login_Button);
-            loginButton.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
 
             //Set register button variable (sign in button) and change background color
             registerButton = findViewById(R.id.Register_Button);
@@ -113,7 +115,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                     loginNavigateToSetting.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            navController.navigate(R.id.to_SplashActivity);
+                            navController.navigate(R.id.to_AuthenticationActivity);
                         }
                     });
 
@@ -132,6 +134,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                             String password = editTextPassword.getText().toString();
 
                             if (email.isEmpty() || password.isEmpty()) {
+                                //Appear pop up text
                                 Toast.makeText(AuthenticationActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
                             } else {
                                 mAuth.signInWithEmailAndPassword(email, password)
@@ -168,7 +171,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                     registerNavigateToSetting.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            navController.navigate(R.id.to_SplashActivity);
+                            navController.navigate(R.id.to_AuthenticationActivity);
                         }
                     });
 
@@ -198,7 +201,17 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                                                     Toast.makeText(AuthenticationActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                                     onAuthenticationSuccess();
                                                 } else {
-                                                    Toast.makeText(AuthenticationActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                    View toastView = getLayoutInflater().inflate(R.layout.custom_toast_layout, null);
+
+                                                    TextView textViewMessage = toastView.findViewById(R.id.textViewMessage);
+
+                                                    String errorMessage = "Registration failed: " + task.getException().getMessage();
+                                                    textViewMessage.setText(errorMessage);
+
+                                                    Toast customToast = new Toast(AuthenticationActivity.this);
+                                                    customToast.setDuration(Toast.LENGTH_SHORT);
+                                                    customToast.setView(toastView);
+                                                    customToast.show();
                                                 }
                                             }
                                         });
@@ -222,14 +235,12 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     private boolean isUserAuthenticated() {
-        // Implement your logic to check if the user is authenticated
-        // You can check if the authentication token exists in SharedPreferences or any other secure storage mechanism
-        // Return true if the user is authenticated, false otherwise
-        // Example:
-        // SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        // String authToken = preferences.getString("authToken", null);
-        // return authToken != null;
-        return false;
+        // Get the current Firebase user
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        // If currentUser is not null, it means the user is authenticated, so return true
+        return currentUser != null;
     }
 
 //    private void signIn() {
