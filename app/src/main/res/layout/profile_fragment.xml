@@ -59,15 +59,6 @@
             android:layout_gravity="end">
 
         <ImageButton
-            android:id="@+id/changePictureButton"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:scaleType="fitCenter"
-            android:paddingRight="20dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/edit" />
-
-        <ImageButton
             android:id="@+id/colorPickerButton"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -162,6 +153,14 @@
                 android:layout_gravity="center" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/signoutButton"
+            android:layout_gravity="center"
+            android:src="@drawable/loginbutton"/>
 
 
 

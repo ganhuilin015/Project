@@ -9,11 +9,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Profile"
+        android:padding="40dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/light_pink"
-        android:textSize="20sp"/>
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/profile_card_view"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:cardPreventCornerOverlap="false"
@@ -21,8 +24,10 @@
         android:layout_marginBottom="30dp">
 
         <ImageView
+            android:id="@+id/cardViewImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:src="@drawable/person"/>
 
     </androidx.cardview.widget.CardView>
@@ -48,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:background="@android:color/transparent"
             android:padding="20dp"
             android:drawableLeft="@drawable/person"
             android:focusable="false"

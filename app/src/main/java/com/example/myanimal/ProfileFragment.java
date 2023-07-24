@@ -30,6 +30,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment{
     private ImageView circleImg;
     private TextView textViewTitle, bioTitle, dobTitle;
     private NavController navController;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -66,23 +68,16 @@ public class ProfileFragment extends Fragment{
         TextView messageTextView = view.findViewById(R.id.profileTextView);
         messageTextView.setText("This is Profile Page");
 
-        //Button to change profile image
-        ImageButton changeImage = view.findViewById(R.id.changePictureButton);
-        changeImage.setOnClickListener(new View.OnClickListener(){
+        //Initialize Firebase Auth
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        ImageButton sign_out_button = view.findViewById(R.id.signoutButton);
+        sign_out_button.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                Log.d("Onclick", "Choosing profile picture");
-                if (changeImageButtonClickListener != null) {
-                    changeImageButtonClickListener.onChangeImageButtonClick();
-                }
+            public void onClick(View v){
+                signOut(v);
             }
         });
-
-        //Get instance of NavBar to use their method
-        if (getActivity() instanceof NavBar) {
-            navBar = (NavBar) getActivity();
-            setOnChangeImageButtonClickListener(navBar);
-        }
 
         //If image uri is not null or empty string, then get the uri image that user chose and set as profile picture
         if ((!viewModel.getImageUri().equals(null)) && (!viewModel.getImageUri().equals(""))){
@@ -167,11 +162,6 @@ public class ProfileFragment extends Fragment{
         void onChangeImageButtonClick();
     }
 
-    //Set it to navBar
-    public void setOnChangeImageButtonClickListener(OnChangeImageButtonClickListener listener) {
-        this.changeImageButtonClickListener = listener;
-    }
-
     //Show the color picker bar for user to pick color
     private void showColorPickerDialog() {
         int initialColor = selectedColor != 0 ? selectedColor : Color.WHITE;
@@ -197,4 +187,8 @@ public class ProfileFragment extends Fragment{
         colorPickerDialog.show();
     }
 
+    public void signOut(View view) {
+        firebaseAuth.signOut();
+        navController.navigate(R.id.to_AuthenticationActivity);
+    }
 }

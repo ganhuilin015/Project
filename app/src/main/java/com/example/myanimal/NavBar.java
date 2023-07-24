@@ -16,6 +16,8 @@
     import android.widget.RelativeLayout;
     import android.widget.TextView;
     import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+    import com.google.android.material.appbar.AppBarLayout;
+    import com.google.android.material.appbar.MaterialToolbar;
     import com.google.firebase.FirebaseApp;
     import androidx.annotation.NonNull;
     import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,7 @@
         private MeowBottomNavigation bottomNavigation;
         private NavController navController;
         RelativeLayout main;
+        MaterialToolbar toolbar;
         private Handler handler = new Handler();
         private Runnable updateRunnable;
         private HungerViewModel viewModel;
@@ -46,6 +49,7 @@
             Log.d("Navbar", "navbar on create");
 
             main = findViewById(R.id.main);
+            toolbar = findViewById(R.id.topNavBar);
 
             bottomNavigation = findViewById(R.id.bottomNavigation);
 
@@ -76,6 +80,7 @@
                             bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FFBB86FC"));
                             getWindow().setStatusBarColor(Color.parseColor("#FFBB86FC"));
                             main.setBackgroundColor(Color.parseColor("#EEE7A5"));
+                            toolbar.setBackgroundColor(Color.parseColor("#EEE7A5"));
                             bottomNavigation.setCircleColor(profileColor);
                             break;
 
@@ -84,6 +89,7 @@
                             bottomNavigation.setBackgroundBottomColor(Color.parseColor("#2196F3"));
                             getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
                             main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
+                            toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
                             bottomNavigation.setCircleColor(petsColor);
                             break;
 
@@ -93,6 +99,7 @@
                             bottomNavigation.setCircleColor(homeColor);
                             getWindow().setNavigationBarColor(Color.parseColor("#EEE7A5"));
                             getWindow().setStatusBarColor(Color.parseColor("#EEE7A5"));
+                            toolbar.setBackgroundColor(Color.parseColor("#2196F3"));
                             break;
 
 
@@ -101,6 +108,7 @@
                             bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FF03DAC5"));
                             getWindow().setStatusBarColor(Color.parseColor("#FF03DAC5"));
                             main.setBackgroundColor(Color.parseColor("#EEA5C2"));
+                            toolbar.setBackgroundColor(Color.parseColor("#EEA5C2"));
                             bottomNavigation.setCircleColor(earnColor);
                             break;
 
@@ -109,6 +117,7 @@
                             bottomNavigation.setBackgroundBottomColor(Color.parseColor("#2196F3"));
                             getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
                             main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
+                            toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
                             bottomNavigation.setCircleColor(settingColor);
                             break;
 
@@ -251,8 +260,8 @@
                 Uri selectedImageUri = data.getData();
                 Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                 Fragment fragment = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
-                if (fragment instanceof ProfileFragment) {
-                    ((ProfileFragment) fragment).onImageSelected(selectedImageUri);
+                if (fragment instanceof UpdateProfileFragment) {
+                    ((UpdateProfileFragment) fragment).onImageSelected(selectedImageUri);
                 }
 
             } else if (requestCode == REQUEST_CAPTURE_IMAGE && resultCode == RESULT_OK) {
