@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Your Name"
+                android:text="User123456"
                 android:padding ="20dp"
                 android:layout_gravity="center"
                 android:textStyle="bold" />
@@ -160,7 +160,7 @@
             android:background="@android:color/transparent"
             android:id="@+id/signoutButton"
             android:layout_gravity="center"
-            android:src="@drawable/loginbutton"/>
+            android:src="@drawable/signoutbutton"/>
 
 
 

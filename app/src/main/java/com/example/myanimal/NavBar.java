@@ -61,13 +61,6 @@
             bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.earn));
             bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.setting));
 
-
-            int homeColor = ContextCompat.getColor(this, R.color.white);
-            int petsColor = ContextCompat.getColor(this, R.color.light_yellow);
-            int earnColor = ContextCompat.getColor(this, R.color.white);
-            int profileColor = ContextCompat.getColor(this, R.color.teal_200);
-            int settingColor = ContextCompat.getColor(this, R.color.white);
-
             navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
             bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
@@ -81,7 +74,6 @@
                             getWindow().setStatusBarColor(Color.parseColor("#FFBB86FC"));
                             main.setBackgroundColor(Color.parseColor("#EEE7A5"));
                             toolbar.setBackgroundColor(Color.parseColor("#EEE7A5"));
-                            bottomNavigation.setCircleColor(profileColor);
                             break;
 
                         case 2:
@@ -90,13 +82,11 @@
                             getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
                             main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
                             toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
-                            bottomNavigation.setCircleColor(petsColor);
                             break;
 
                         case 3:
                             bottomNavigation.setBackgroundBottomColor(Color.parseColor("#EEE7A5"));
                             main.setBackgroundColor(Color.parseColor("#2196F3"));
-                            bottomNavigation.setCircleColor(homeColor);
                             getWindow().setNavigationBarColor(Color.parseColor("#EEE7A5"));
                             getWindow().setStatusBarColor(Color.parseColor("#EEE7A5"));
                             toolbar.setBackgroundColor(Color.parseColor("#2196F3"));
@@ -109,7 +99,6 @@
                             getWindow().setStatusBarColor(Color.parseColor("#FF03DAC5"));
                             main.setBackgroundColor(Color.parseColor("#EEA5C2"));
                             toolbar.setBackgroundColor(Color.parseColor("#EEA5C2"));
-                            bottomNavigation.setCircleColor(earnColor);
                             break;
 
                         case 5:
@@ -118,7 +107,6 @@
                             getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
                             main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
                             toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
-                            bottomNavigation.setCircleColor(settingColor);
                             break;
 
 

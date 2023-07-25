@@ -46,11 +46,11 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     private static final int RC_SIGN_IN = 100;
     private NavController navController;
     private ImageButton loginButton;
-    private Button registerButton;
-    private Button loginNavigateToSetting;
+    private ImageButton registerButton;
+    private ImageButton loginNavigateToSetting;
 
     private EditText editTextEmail, editTextPassword;
-    private Button buttonLogin;
+    private ImageButton buttonLogin;
     private FirebaseAuth mAuth;
     private Button registerNavigateToSetting;
     private Button buttonRegister;
@@ -125,7 +125,6 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
                     //Button to log in to proceed to home page and change background color
                     buttonLogin = findViewById(R.id.buttonLogin);
-                    buttonLogin.setBackgroundColor(ContextCompat.getColor(AuthenticationActivity.this, R.color.white));
 
                     buttonLogin.setOnClickListener(new View.OnClickListener() {
                         @Override

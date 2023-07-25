@@ -77,19 +77,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:id="@+id/save_profile_button"
-            android:text="Save Profile"/>
+            android:background="@android:color/transparent"
+            android:src="@drawable/savebutton"/>
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:id="@+id/back_profile_button"
-            android:text="Back"/>
+            android:src="@drawable/backbutton"
+            android:background="@android:color/transparent"
+            android:id="@+id/back_profile_button" />
 
     </LinearLayout>
 

@@ -31,16 +31,16 @@
         <ImageButton
             android:id="@+id/Login_Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:background="@android:color/transparent"
             android:src="@drawable/loginbutton" />
 
-        <Button
+        <ImageButton
             android:id="@+id/Register_Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:textColor="@color/black"/>
+            android:layout_height="100dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/signupbutton"/>
 
     </LinearLayout>
 

@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:mbn_backgroundBottomColor="@color/light_yellow"
-        app:mbn_circleColor="@color/white"
+        app:mbn_circleColor="@android:color/transparent"
         app:mbn_countBackgroundColor="@color/light_blue"
         app:mbn_countTextColor="@color/black"
         app:mbn_defaultIconColor="@color/black"

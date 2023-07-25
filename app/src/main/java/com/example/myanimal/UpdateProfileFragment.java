@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class UpdateProfileFragment extends Fragment {
     private EditText editBio, editName;
     private TextInputEditText editDOB;
     private Calendar calendar;
-    private Button saveProfile, backProfile;
+    private ImageButton saveProfile, backProfile;
     private NavController navController;
     private ProfileUpdateListener profileUpdateListener;
     private HungerViewModel viewModel;

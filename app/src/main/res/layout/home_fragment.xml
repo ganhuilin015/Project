@@ -109,17 +109,11 @@
         <ImageButton
             android:id="@+id/feedButton"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:padding="20dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/pokemon" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Feed"/>
+            app:srcCompat="@drawable/feedbutton" />
 
         </LinearLayout>
 
