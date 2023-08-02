@@ -46,14 +46,10 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     private static final int RC_SIGN_IN = 100;
     private NavController navController;
     private ImageButton loginButton;
-    private ImageButton registerButton;
-    private ImageButton loginNavigateToSetting;
-
+    private ImageButton registerButton, loginNavigateToSetting, registerNavigateToSetting, buttonRegister;
     private EditText editTextEmail, editTextPassword;
     private ImageButton buttonLogin;
     private FirebaseAuth mAuth;
-    private Button registerNavigateToSetting;
-    private Button buttonRegister;
     private  NavHostFragment navHostFragment;
     private GoogleSignInClient googleSignInClient;
 
@@ -78,9 +74,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
             //Set login button variable
             loginButton = findViewById(R.id.Login_Button);
 
-            //Set register button variable (sign in button) and change background color
+            //Set register button variable (sign in button)
             registerButton = findViewById(R.id.Register_Button);
-            registerButton.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
 
 //            // Configure sign-in to request the user's ID, email address, and basic profile
 //            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -108,9 +103,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                 public void onClick(View v) {
                     setContentView(R.layout.login_fragment);
 
-                    //Back button to navigate back to Authentication activity and set background color
+                    //Back button to navigate back to Authentication activity
                     loginNavigateToSetting = findViewById(R.id.LoginToSetting_Button);
-                    loginNavigateToSetting.setBackgroundColor(ContextCompat.getColor(AuthenticationActivity.this, R.color.white));
 
                     loginNavigateToSetting.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -163,9 +157,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
                     setContentView(R.layout.register_fragment);
 
-                    //Back button to navigate back to authentication activity and set button color
+                    //Back button to navigate back to authentication activity
                     registerNavigateToSetting = findViewById(R.id.RegisterToSetting_Button);
-                    registerNavigateToSetting.setBackgroundColor(ContextCompat.getColor(AuthenticationActivity.this, R.color.white));
 
                     registerNavigateToSetting.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -178,9 +171,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                     editTextEmail = findViewById(R.id.editTextEmail);
                     editTextPassword = findViewById(R.id.editTextPassword);
 
-                    //Button to register and then navigate to home page and change background color
+                    //Button to register and then navigate to home page
                     buttonRegister = findViewById(R.id.buttonRegister);
-                    buttonRegister.setBackgroundColor(ContextCompat.getColor(AuthenticationActivity.this, R.color.white));
 
                     buttonRegister.setOnClickListener(new View.OnClickListener() {
                         @Override

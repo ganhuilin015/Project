@@ -69,11 +69,11 @@
                     // your codes
                     switch (item.getId()){
                         case 1:
-                            getWindow().setNavigationBarColor(Color.parseColor("#FFBB86FC"));
-                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FFBB86FC"));
-                            getWindow().setStatusBarColor(Color.parseColor("#FFBB86FC"));
-                            main.setBackgroundColor(Color.parseColor("#EEE7A5"));
-                            toolbar.setBackgroundColor(Color.parseColor("#EEE7A5"));
+                            getWindow().setNavigationBarColor(Color.parseColor("#B1D5FF"));
+                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#B1D5FF"));
+                            getWindow().setStatusBarColor(Color.parseColor("#B1D5FF"));
+                            main.setBackgroundColor(Color.parseColor("#FFC7C2"));
+                            toolbar.setBackgroundColor(Color.parseColor("#B1D5FF"));
                             break;
 
                         case 2:
@@ -85,11 +85,11 @@
                             break;
 
                         case 3:
-                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#EEE7A5"));
-                            main.setBackgroundColor(Color.parseColor("#2196F3"));
-                            getWindow().setNavigationBarColor(Color.parseColor("#EEE7A5"));
-                            getWindow().setStatusBarColor(Color.parseColor("#EEE7A5"));
-                            toolbar.setBackgroundColor(Color.parseColor("#2196F3"));
+                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FEFA9D"));
+                            main.setBackgroundColor(Color.parseColor("#81FEC2"));
+                            getWindow().setNavigationBarColor(Color.parseColor("#FEFA9D"));
+                            getWindow().setStatusBarColor(Color.parseColor("#FEFA9D"));
+                            toolbar.setBackgroundColor(Color.parseColor("#FEFA9D"));
                             break;
 
 
@@ -186,12 +186,16 @@
             viewModel = new ViewModelProvider(this).get(HungerViewModel.class);
             viewModel.setHunger(120);
             viewModel.setTired(120);
+            viewModel.setHealth(120);
+            viewModel.setHappy(120);
 
             updateRunnable = new Runnable() {
                 @Override
                 public void run() {
                     int hungerValue = viewModel.getHunger().getValue();
                     int tiredValue = viewModel.getTired().getValue();
+                    int healthValue = viewModel.getHealth().getValue();
+                    int happyValue = viewModel.getHappy().getValue();
 
                     if (hungerValue > 0){
                         hungerValue--;
@@ -199,10 +203,28 @@
                         myRef.setValue(hungerValue);
                     }
 
-                    if (tiredValue > 0){
-                        tiredValue--;
+                    if (healthValue > 0){
+                        healthValue--;
+                        viewModel.setHealth(healthValue);
+                        myRef.setValue(healthValue);
+                    }
+
+                    if (happyValue > 0){
+                        happyValue--;
+                        viewModel.setHappy(happyValue);
+                        myRef.setValue(happyValue);
+                    }
+
+                    if (viewModel.getLightImageUri() == R.drawable.lamp_dim_ && tiredValue < 120){
+                        tiredValue++;
                         viewModel.setTired(tiredValue);
                         myRef.setValue(tiredValue);
+                    } else {
+                        if (tiredValue > 0){
+                            tiredValue--;
+                            viewModel.setTired(tiredValue);
+                            myRef.setValue(tiredValue);
+                        }
                     }
 
                     handler.postDelayed(this, 20000); // Update every 20 seconds
@@ -216,6 +238,7 @@
         }
 
         public void updateCoinCount(int count) {
+
             coinCountTextView.setText(String.valueOf(count));
         }
 

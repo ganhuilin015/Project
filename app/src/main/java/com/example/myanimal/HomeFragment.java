@@ -26,8 +26,8 @@ public class HomeFragment extends Fragment {
     private Runnable updateRunnable;
     private View view;
     ;
-    private int hunger = 120;
-    private int tired = 120;
+    private int hunger, tired, health, happy = 120;
+    private boolean IsLightOn = true;
 
     private static final String HUNGER_PREF = "hunger_pref";
     private static final String HUNGER_KEY = "hunger_key";
@@ -44,25 +44,28 @@ public class HomeFragment extends Fragment {
             navBar = (NavBar) getActivity();
         }
 
-        ImageView gifImageView = view.findViewById(R.id.gifImageView);
-        Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
+//        ImageView gifImageView = view.findViewById(R.id.gifImageView);
+//        Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
 
         ImageButton feedButton = view.findViewById(R.id.feedButton);
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hunger < 120) {
+                if (hunger < 110) {
                     hunger++;
                 }
                 viewModel.setHunger(hunger);
                 int coinValue = navBar.getCoinCount();
 
-                if (coinValue > 9){
+                if (coinValue > 9 && viewModel.getLightImageUri() == R.drawable.lamp_light_){
                     coinValue = coinValue - 10;
                     Log.d("Home Coin", String.valueOf(coinValue));
                     navBar.updateCoinCount(coinValue);
                     System.out.println(hunger);
-                } else {
+                } else if (viewModel.getLightImageUri() == R.drawable.lamp_dim_){
+                    Toast.makeText(requireContext(), "Unable to feed because your pet is sleeping", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Toast.makeText(requireContext(), "Insufficient coin", Toast.LENGTH_SHORT).show();
                 }
 
@@ -71,14 +74,19 @@ public class HomeFragment extends Fragment {
 
 
         ImageButton sleepButton = view.findViewById(R.id.sleepButton);
+        sleepButton.setImageResource(viewModel.getLightImageUri());
         sleepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tired < 120){
-                    tired++;
+                if (IsLightOn) {
+                    sleepButton.setImageResource(R.drawable.lamp_dim_);
+                    viewModel.setLightImageUri(R.drawable.lamp_dim_);
+                    IsLightOn = false;
+                } else {
+                    sleepButton.setImageResource(R.drawable.lamp_light_);
+                    viewModel.setLightImageUri(R.drawable.lamp_light_);
+                    IsLightOn = true;
                 }
-                viewModel.setTired(tired);
-                System.out.println(tired);
             }
         });
 
@@ -104,98 +112,182 @@ public class HomeFragment extends Fragment {
                 updateTiredStatus(tired);
             }
         });
+
+        viewModel.getHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer updatedHealth) {
+                health = updatedHealth;
+                Log.d("onHomeCreateView_health", String.valueOf(health));
+                updateHealthStatus(health);
+            }
+        });
+
+        viewModel.getHappy().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer updatedHappy) {
+                happy = updatedHappy;
+                Log.d("onHomeCreateView_happy", String.valueOf(happy));
+                updateHappyStatus(happy);
+            }
+        });
     }
 
     public void updateHungerStatus(int updateHunger) {
         Log.d("updateHungerStatus", String.valueOf(updateHunger));
         hunger = updateHunger;
 
-        ImageView statusBar = view.findViewById(R.id.statusbar);
+        ImageView statusBar_Hunger = view.findViewById(R.id.statusbar_Hunger);
 
         // Get the image resource ID based on the hunger value
-        int imageResId = getImageResourceId();
+        int imageResId_Hunger = getImageResourceId_Hunger();
 
         // Set the status bar image resource
-        statusBar.setImageResource(imageResId);
+        statusBar_Hunger.setImageResource(imageResId_Hunger);
     }
 
-    private int getImageResourceId() {
-        if (this.hunger >= 110) {
-            return R.drawable.statusbarfull;
-        } else if (this.hunger < 110 && this.hunger >= 100) {
-            return R.drawable.statusbar10;
+    private int getImageResourceId_Hunger() {
+        if (this.hunger >= 100) {
+            return R.drawable.hungerstatusfull;
         } else if (this.hunger < 100 && this.hunger >= 90) {
-            return R.drawable.statusbar9;
+            return R.drawable.hungerstatus9;
         } else if (this.hunger < 90 && this.hunger >= 80) {
-            return R.drawable.statusbar8;
+            return R.drawable.hungerstatus8;
         } else if (this.hunger < 80 && this.hunger >= 70) {
-            return R.drawable.statusbar7;
+            return R.drawable.hungerstatus7;
         } else if (this.hunger < 70 && this.hunger >= 60) {
-            return R.drawable.statusbar6;
+            return R.drawable.hungerstatus6;
         } else if (this.hunger < 60 && this.hunger >= 50) {
-            return R.drawable.statusbar5;
+            return R.drawable.hungerstatus5;
         } else if (this.hunger < 50 && this.hunger >= 40) {
-            return R.drawable.statusbar4;
+            return R.drawable.hungerstatus4;
         } else if (this.hunger < 40 && this.hunger >= 30) {
-            return R.drawable.statusbar3;
+            return R.drawable.hungerstatus3;
         } else if (this.hunger < 30 && this.hunger >= 20) {
-            return R.drawable.statusbar2;
+            return R.drawable.hungerstatus2;
         } else if (this.hunger < 20 && this.hunger >= 10) {
-            return R.drawable.statusbar1;
+            return R.drawable.hungerstatus1;
         } else {
-            return R.drawable.statusbar0;
+            return R.drawable.hungerstatus0;
         }
-    }
-
-    public int getHunger(){
-        return this.hunger;
     }
 
     public void updateTiredStatus(int updateTired) {
         Log.d("updateTiredStatus", String.valueOf(updateTired));
         tired = updateTired;
 
-        ImageView statusBar = view.findViewById(R.id.statusbar_Tired);
+        ImageView statusBar_Tired = view.findViewById(R.id.statusbar_Tired);
 
         // Get the image resource ID based on the hunger value
-        int imageResId_Tired = getImageResourceId_Tired();
+        int imageResId_Tired = getImageResourceId_Energy();
 
         // Set the status bar image resource
-        statusBar.setImageResource(imageResId_Tired);
+        statusBar_Tired.setImageResource(imageResId_Tired);
     }
 
-    private int getImageResourceId_Tired() {
-        if (this.tired >= 110) {
-            return R.drawable.statusbarfull;
-        } else if (this.tired < 110 && this.tired >= 100) {
-            return R.drawable.statusbar10;
+    private int getImageResourceId_Energy() {
+        if (this.tired >= 100) {
+            return R.drawable.energystatusfull;
         } else if (this.tired < 100 && this.tired >= 90) {
-            return R.drawable.statusbar9;
+            return R.drawable.energystatus9;
         } else if (this.tired < 90 && this.tired >= 80) {
-            return R.drawable.statusbar8;
+            return R.drawable.energystatus8;
         } else if (this.tired < 80 && this.tired >= 70) {
-            return R.drawable.statusbar7;
+            return R.drawable.energystatus7;
         } else if (this.tired < 70 && this.tired >= 60) {
-            return R.drawable.statusbar6;
+            return R.drawable.energystatus6;
         } else if (this.tired < 60 && this.tired >= 50) {
-            return R.drawable.statusbar5;
+            return R.drawable.energystatus5;
         } else if (this.tired < 50 && this.tired >= 40) {
-            return R.drawable.statusbar4;
+            return R.drawable.energystatus4;
         } else if (this.tired < 40 && this.tired >= 30) {
-            return R.drawable.statusbar3;
+            return R.drawable.energystatus3;
         } else if (this.tired < 30 && this.tired >= 20) {
-            return R.drawable.statusbar2;
+            return R.drawable.energystatus2;
         } else if (this.tired < 20 && this.tired >= 10) {
-            return R.drawable.statusbar1;
+            return R.drawable.energystatus1;
         } else {
-            return R.drawable.statusbar0;
+            return R.drawable.energystatus0;
         }
     }
 
-    public int getTired(){
+    public void updateHealthStatus(int updateHealth) {
+        Log.d("updateHealthStatus", String.valueOf(updateHealth));
+        health = updateHealth;
 
-        return this.tired;
+        ImageView statusBar_Health = view.findViewById(R.id.statusbar_Health);
+
+        // Get the image resource ID based on the hunger value
+        int imageResId_Health = getImageResourceId_Health();
+
+        // Set the status bar image resource
+        statusBar_Health.setImageResource(imageResId_Health);
     }
+
+    private int getImageResourceId_Health() {
+        if (this.health >= 100) {
+            return R.drawable.healthstatusfull;
+        } else if (this.health < 100 && this.health >= 90) {
+            return R.drawable.healthstatus9;
+        } else if (this.health < 90 && this.health >= 80) {
+            return R.drawable.healthstatus8;
+        } else if (this.health < 80 && this.health >= 70) {
+            return R.drawable.healthstatus7;
+        } else if (this.health < 70 && this.health >= 60) {
+            return R.drawable.healthstatus6;
+        } else if (this.health < 60 && this.health >= 50) {
+            return R.drawable.healthstatus5;
+        } else if (this.health < 50 && this.health >= 40) {
+            return R.drawable.healthstatus4;
+        } else if (this.health < 40 && this.health >= 30) {
+            return R.drawable.healthstatus3;
+        } else if (this.health < 30 && this.health >= 20) {
+            return R.drawable.healthstatus2;
+        } else if (this.health < 20 && this.health >= 10) {
+            return R.drawable.healthstatus1;
+        } else {
+            return R.drawable.healthstatus0;
+        }
+    }
+
+    public void updateHappyStatus(int updateHappy) {
+        Log.d("updateHappyStatus", String.valueOf(updateHappy));
+        happy = updateHappy;
+
+        ImageView statusBar_Happy = view.findViewById(R.id.statusbar_Happy);
+
+        // Get the image resource ID based on the hunger value
+        int imageResId_Happy = getImageResourceId_Happy();
+
+        // Set the status bar image resource
+        statusBar_Happy.setImageResource(imageResId_Happy);
+    }
+
+    private int getImageResourceId_Happy() {
+        if (this.happy >= 100) {
+            return R.drawable.happinessstatusfull;
+        } else if (this.happy < 100 && this.happy >= 90) {
+            return R.drawable.happinessstatus9;
+        } else if (this.happy < 90 && this.happy >= 80) {
+            return R.drawable.happinessstatus8;
+        } else if (this.happy < 80 && this.happy >= 70) {
+            return R.drawable.happinessstatus7;
+        } else if (this.happy < 70 && this.happy >= 60) {
+            return R.drawable.happinessstatus6;
+        } else if (this.happy < 60 && this.happy >= 50) {
+            return R.drawable.happinessstatus5;
+        } else if (this.happy < 50 && this.happy >= 40) {
+            return R.drawable.happinessstatus4;
+        } else if (this.happy < 40 && this.happy >= 30) {
+            return R.drawable.happinessstatus3;
+        } else if (this.happy < 30 && this.happy >= 20) {
+            return R.drawable.happinessstatus2;
+        } else if (this.happy < 20 && this.happy >= 10) {
+            return R.drawable.happinessstatus1;
+        } else {
+            return R.drawable.happinessstatus0;
+        }
+    }
+
 }
 
 

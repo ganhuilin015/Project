@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,17 +59,32 @@ public class UpdateProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.update_profile_fragment, container, false);
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+
+        //Initialize NavBar
+        if (getActivity() instanceof NavBar) {
+            navBar = (NavBar) getActivity();
+        }
+
         viewModel = new ViewModelProvider(requireActivity()).get(HungerViewModel.class);
 
         editBio = view.findViewById(R.id.edit_bio);
+        //Set maximum words for bio
+        editBio.addTextChangedListener(textWatcher);
+        //Set previous text
+        editBio.setText(viewModel.getProfileBio());
+
         editDOB = view.findViewById(R.id.date_of_birth);
+        editDOB.setText(viewModel.getProfileDOB());
+
         editName = view.findViewById(R.id.edit_name);
+        editName.setText(viewModel.getProfileName());
 
         calendar = Calendar.getInstance();
         updateLabel();
         editDOB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 showDatePickerDialog();
             }
         });
@@ -90,6 +107,8 @@ public class UpdateProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.to_profile);
+                navBar.main.setBackgroundColor(Color.parseColor("#FFC7C2"));
+
             }
         });
 
@@ -136,6 +155,7 @@ public class UpdateProfileFragment extends Fragment {
 
         if (profileUpdateListener != null) {
             navController.navigateUp();
+            navBar.main.setBackgroundColor(Color.parseColor("#FFC7C2"));
             profileUpdateListener.onUpdateProfile(name, bio, Dob);
             Toast.makeText(requireContext(), "updated", Toast.LENGTH_SHORT).show();
         } else {
@@ -215,5 +235,25 @@ public class UpdateProfileFragment extends Fragment {
                 .into(profileImg);
     }
 
+    //For bio to set a maximum amount of word so it does not goes over the limit
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+            // Not used
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            // Not used
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            int maxWords = 100; // Set the maximum number of words here
+            if (editable.length() > maxWords) {
+                editable.replace(maxWords, editable.length(), "");
+            }
+        }
+    };
 
 }

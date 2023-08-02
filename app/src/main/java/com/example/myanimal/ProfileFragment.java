@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,12 +47,9 @@ public class ProfileFragment extends Fragment{
     private View view;
     private OnChangeImageButtonClickListener changeImageButtonClickListener;
     private HungerViewModel viewModel;
-    private int selectedColor;
-    private ImageView circleImg;
     private TextView textViewTitle, bioTitle, dobTitle;
     private NavController navController;
     private FirebaseAuth firebaseAuth;
-
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,9 +62,10 @@ public class ProfileFragment extends Fragment{
         //Initialize the navcontroller for navigation
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
-        //Profile page title
-        TextView messageTextView = view.findViewById(R.id.profileTextView);
-        messageTextView.setText("This is Profile Page");
+        //Initialize NavBar
+        if (getActivity() instanceof NavBar) {
+            navBar = (NavBar) getActivity();
+        }
 
         //Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -90,23 +89,23 @@ public class ProfileFragment extends Fragment{
             onImageSelected(imageUri);
         }
 
-        //Circle border of profile picture
-        circleImg = view.findViewById(R.id.circleImageView);
-
-        //Enable user to pick from color picker for the color of border
-        ImageButton colorPicker = view.findViewById(R.id.colorPickerButton);
-        colorPicker.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                showColorPickerDialog();
-            }
-        });
-
-        //Enable use to choose color they want for the border color
-        Drawable originalDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.circle_background);
-        Drawable drawableWithColor = originalDrawable.mutate();
-        drawableWithColor.setColorFilter(viewModel.getColorPicked(), PorterDuff.Mode.SRC_IN);
-        circleImg.setImageDrawable(drawableWithColor);
+//        //Circle border of profile picture
+//        circleImg = view.findViewById(R.id.circleImageView);
+//
+//        //Enable user to pick from color picker for the color of border
+//        ImageButton colorPicker = view.findViewById(R.id.colorPickerButton);
+//        colorPicker.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//
+//                showColorPickerDialog();
+//            }
+//        });
+//
+//        //Enable use to choose color they want for the border color
+//        Drawable originalDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.circle_background);
+//        Drawable drawableWithColor = originalDrawable.mutate();
+//        drawableWithColor.setColorFilter(viewModel.getColorPicked(), PorterDuff.Mode.SRC_IN);
+//        circleImg.setImageDrawable(drawableWithColor);
 
         //Display user information
         textViewTitle = view.findViewById(R.id.textViewTitle);
@@ -136,8 +135,8 @@ public class ProfileFragment extends Fragment{
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 navController.navigate(R.id.to_update_profile);
+                navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
             }
         });
 
@@ -163,29 +162,29 @@ public class ProfileFragment extends Fragment{
     }
 
     //Show the color picker bar for user to pick color
-    private void showColorPickerDialog() {
-        int initialColor = selectedColor != 0 ? selectedColor : Color.WHITE;
-        AmbilWarnaDialog colorPickerDialog = new AmbilWarnaDialog(requireContext(), initialColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-                // Do nothing when the user cancels the color picker
-            }
-
-            //When color picked OK, perform the action to change the profile border color
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                selectedColor = color;
-                viewModel.setColorPicked(color);
-                Drawable originalDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.circle_background);
-                Drawable drawableWithColor = originalDrawable.mutate();
-                drawableWithColor.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                circleImg.setImageDrawable(drawableWithColor);
-
-            }
-        });
-
-        colorPickerDialog.show();
-    }
+//    private void showColorPickerDialog() {
+//        int initialColor = selectedColor != 0 ? selectedColor : Color.WHITE;
+//        AmbilWarnaDialog colorPickerDialog = new AmbilWarnaDialog(requireContext(), initialColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+//            @Override
+//            public void onCancel(AmbilWarnaDialog dialog) {
+//                // Do nothing when the user cancels the color picker
+//            }
+//
+//            //When color picked OK, perform the action to change the profile border color
+//            @Override
+//            public void onOk(AmbilWarnaDialog dialog, int color) {
+//                selectedColor = color;
+//                viewModel.setColorPicked(color);
+//                Drawable originalDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.circle_background);
+//                Drawable drawableWithColor = originalDrawable.mutate();
+//                drawableWithColor.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+//                circleImg.setImageDrawable(drawableWithColor);
+//
+//            }
+//        });
+//
+//        colorPickerDialog.show();
+//    }
 
     public void signOut(View view) {
         firebaseAuth.signOut();

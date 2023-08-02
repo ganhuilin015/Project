@@ -3,16 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/theme_grey"
     android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:padding="40dp"
+        android:text="EDIT PROFILE"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         android:textSize="30sp"/>
 
     <androidx.cardview.widget.CardView
@@ -32,45 +33,84 @@
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:drawablePadding="10dp"
-        android:padding="20dp"
-        android:id="@+id/edit_name"
-        android:drawableLeft="@drawable/person"
-        android:textColor="@color/black"/>
+        android:layout_marginTop="-30dp"
+        android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/datePickerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date-of-birth">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/date_of_birth"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:background="@android:color/transparent"
+            android:text="Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:drawablePadding="10dp"
             android:padding="20dp"
+            android:background="@drawable/edittext_background"
+            android:id="@+id/edit_name"
             android:drawableLeft="@drawable/person"
-            android:focusable="false"
-            android:inputType="none" />
+            android:textColor="@color/black"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATE-OF-BIRTH"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Bio"
-        android:drawablePadding="10dp"
-        android:padding="20dp"
-        android:id="@+id/edit_bio"
-        android:drawableLeft="@drawable/profile"
-        android:textColor="@color/black"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/datePickerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date-of-birth">
 
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date_of_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@drawable/edittext_background"
+                android:padding="20dp"
+                android:drawableLeft="@drawable/person"
+                android:focusable="false"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BIO"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bio"
+            android:drawablePadding="10dp"
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="20dp"
+            android:background="@drawable/edittext_background"
+            android:id="@+id/edit_bio"
+            android:drawableLeft="@drawable/profile"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

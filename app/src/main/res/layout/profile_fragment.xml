@@ -3,117 +3,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_yellow"
+    android:background="@color/theme_red"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/profile_main">
 
-    <ImageButton
-        android:id="@+id/edit_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:src="@drawable/edit"
-        android:background="@android:color/transparent"/>
-
-    <TextView
-        android:id="@+id/profileTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is Profile Page"
-        android:background="@android:color/transparent"
-        android:textSize="16sp"
-        android:padding="50dp"
-        android:gravity="center"
-        android:textColor="@color/black"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="200dp"
-            android:layout_height="200dp">
+        <ImageButton
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/edit"
+            android:background="@android:color/transparent"/>
 
         <ImageView
             android:id="@+id/profileImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/pokemon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/person"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
 
-        <ImageView
-            android:id="@+id/circleImageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/circle_background" />
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end">
-
-        <ImageButton
-            android:id="@+id/colorPickerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/color_picker" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="Name "
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/white"
                 android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/black"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
                 android:text="User123456"
-                android:padding ="20dp"
-                android:layout_gravity="center"
-                android:textStyle="bold" />
+                android:background="@drawable/edittext_background"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date-of-birth: "
+                android:text="Date-of-birth "
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
                 android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold"/>
 
             <TextView
@@ -123,23 +91,26 @@
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:text="Date-of-birth"
-                android:padding ="20dp"
-                android:layout_gravity="center" />
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edittext_background"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bio: "
+                android:text="Bio "
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
                 android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold"/>
 
             <TextView
@@ -148,9 +119,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Bio"
-                android:padding ="20dp"
-                android:layout_gravity="center" />
+                android:text="Your Introduction."
+                android:paddingTop ="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/edittext_background"/>
 
         </LinearLayout>
 
@@ -159,6 +132,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:id="@+id/signoutButton"
+            android:paddingTop="20dp"
             android:layout_gravity="center"
             android:src="@drawable/signoutbutton"/>
 

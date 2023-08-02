@@ -12,4 +12,10 @@
     <color name="light_pink">#EEA5C2</color>
     <color name="yellow">#FFEB3B</color>
     <color name="pokemon_yellow">#FFFF00</color>
+    <color name="theme_green">#81FEC2</color>
+    <color name="theme_yellow">#FEFA9D</color>
+    <color name="theme_blue">#B1D5FF</color>
+    <color name="theme_pink">#EFCCFF</color>
+    <color name="theme_red">#FFC7C2</color>
+    <color name="theme_grey">#CED5D5</color>
 </resources>
