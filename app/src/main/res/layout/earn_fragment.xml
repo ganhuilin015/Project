@@ -3,30 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_pink"
-    android:gravity="center"
+    android:background="@color/theme_blue"
     android:orientation="vertical">
 
     <ImageButton
-        android:id="@+id/earnButton"
+        android:id="@+id/backarrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:padding="40dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/pokemon" />
+        android:src="@drawable/backarrow"
+        android:layout_gravity="start"
+        android:paddingLeft="20dp"
+        android:background="@android:color/transparent"/>
 
-    <TextView
-        android:id="@+id/messageTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:text="Press the button to earn coins"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:visibility="visible" />
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <!-- Rest of your layout -->
+
+        <ImageButton
+            android:id="@+id/earningButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="40dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/pokemon" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Press the button to earn coins"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

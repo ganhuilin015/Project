@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_grey"
+    android:gravity="center"
+    android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/earnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/earnbutton"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/walkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/walkbutton"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/diaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/diarybutton"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/vetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/vetbutton"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>

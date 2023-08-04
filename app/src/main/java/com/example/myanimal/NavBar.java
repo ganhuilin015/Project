@@ -77,11 +77,11 @@
                             break;
 
                         case 2:
-                            getWindow().setNavigationBarColor(Color.parseColor("#2196F3"));
-                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#2196F3"));
-                            getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
-                            main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
-                            toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
+                            getWindow().setNavigationBarColor(Color.parseColor("#FFC7C2"));
+                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FFC7C2"));
+                            getWindow().setStatusBarColor(Color.parseColor("#FFC7C2"));
+                            main.setBackgroundColor(Color.parseColor("#FEFA9D"));
+                            toolbar.setBackgroundColor(Color.parseColor("#FFC7C2"));
                             break;
 
                         case 3:
@@ -94,11 +94,11 @@
 
 
                         case 4:
-                            getWindow().setNavigationBarColor(Color.parseColor("#FF03DAC5"));
-                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#FF03DAC5"));
-                            getWindow().setStatusBarColor(Color.parseColor("#FF03DAC5"));
-                            main.setBackgroundColor(Color.parseColor("#EEA5C2"));
-                            toolbar.setBackgroundColor(Color.parseColor("#EEA5C2"));
+                            getWindow().setNavigationBarColor(Color.parseColor("#81FEC2"));
+                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#81FEC2"));
+                            getWindow().setStatusBarColor(Color.parseColor("#81FEC2"));
+                            main.setBackgroundColor(Color.parseColor("#CED5D5"));
+                            toolbar.setBackgroundColor(Color.parseColor("#81FEC2"));
                             break;
 
                         case 5:
@@ -124,7 +124,7 @@
                             break;
 
                         case 2:
-                            navController.navigate(R.id.destination_pets);
+                            navController.navigate(R.id.destination_shop);
                             break;
 
                         case 3:
@@ -132,7 +132,7 @@
                             break;
 
                         case 4:
-                            navController.navigate(R.id.destination_earn);
+                            navController.navigate(R.id.destination_activity);
                             break;
 
                         case 5:

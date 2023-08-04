@@ -95,5 +95,4 @@ dependencies {
 //    Google sign in
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
     implementation 'com.google.firebase:firebase-firestore:23.0.0'
-
 }

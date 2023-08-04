@@ -32,8 +32,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/destination_pets"
-        android:name="com.example.myanimal.PetsFragment"
+        android:id="@+id/destination_shop"
+        android:name="com.example.myanimal.ShopFragment"
         android:label="Pets">
 
     </fragment>
@@ -46,14 +46,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/destination_earn"
-        android:name="com.example.myanimal.EarnFragment"
+        android:id="@+id/destination_activity"
+        android:name="com.example.myanimal.ActivityFragment"
         android:label="Earn">
     </fragment>
 
     <fragment
         android:id="@+id/destination_setting"
-        android:name="com.example.myanimal.SettingFragment"
+        android:name="com.example.myanimal.FriendFragment"
         android:label="Setting">
     </fragment>
 
@@ -63,6 +63,17 @@
         android:label="UpdateProfile">
     </fragment>
 
+    <fragment
+        android:id="@+id/destination_foods_shop"
+        android:name="com.example.myanimal.FoodsShopFragment"
+        android:label="FoodsShop">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_earn"
+        android:name="com.example.myanimal.EarnFragment"
+        android:label="FoodsShop">
+    </fragment>
 
     <action
         android:id="@+id/to_AuthenticationActivity"
@@ -75,6 +86,22 @@
     <action
         android:id="@+id/to_profile"
         app:destination="@id/destination_profile"/>
+
+    <action
+        android:id="@+id/to_shop"
+        app:destination="@id/destination_shop"/>
+
+    <action
+        android:id="@+id/to_earn"
+        app:destination="@id/destination_earn"/>
+
+    <action
+        android:id="@+id/to_foodsshop"
+        app:destination="@id/destination_foods_shop"/>
+
+    <action
+        android:id="@+id/to_activity"
+        app:destination="@id/destination_activity"/>
 
 
 

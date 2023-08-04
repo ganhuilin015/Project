@@ -120,16 +120,16 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/save_profile_button"
+            android:src="@drawable/backbutton"
             android:background="@android:color/transparent"
-            android:src="@drawable/savebutton"/>
+            android:id="@+id/back_profile_button" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/backbutton"
+            android:id="@+id/save_profile_button"
             android:background="@android:color/transparent"
-            android:id="@+id/back_profile_button" />
+            android:src="@drawable/savebutton"/>
 
     </LinearLayout>
 

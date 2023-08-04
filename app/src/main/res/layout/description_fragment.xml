@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="500dp"
+    android:layout_gravity="center"
+    android:id="@+id/description_box"
+    android:background="@drawable/description_card_background_color">
+
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:background="@drawable/description_card_background"
+            android:layout_height="440dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/fox"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:id="@+id/description_text"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/purchasebutton"
+                android:layout_gravity="center"
+                android:id="@+id/purchaseButton"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/crossbutton"
+        android:layout_gravity="end"
+        android:id="@+id/crossButton"
+        android:background="@android:color/transparent"/>
+
+</FrameLayout>

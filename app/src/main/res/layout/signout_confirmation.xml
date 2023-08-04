@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/description_box"
+    android:background="@drawable/description_card_background_grey">
+
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:background="@drawable/description_card_background"
+        android:layout_height="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you sure you
+             want to sign out?"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:textColor="@color/grey"
+            android:id="@+id/description_text"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="80dp"
+                android:src="@drawable/nobutton"
+                android:layout_gravity="center"
+                android:id="@+id/noButton"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="80dp"
+                android:src="@drawable/yesbutton"
+                android:layout_gravity="center"
+                android:id="@+id/yesButton"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

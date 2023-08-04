@@ -74,7 +74,31 @@ public class ProfileFragment extends Fragment{
         sign_out_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                signOut(v);
+                // Inflate the custom layout for the dialog
+                View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.signout_confirmation, null);
+
+                // Create the AlertDialog
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext(),  R.style.TransparentAlertDialog);
+                alertDialogBuilder.setView(dialogView);
+
+                // Show the dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                ImageButton yesButton = dialogView.findViewById(R.id.yesButton);
+                yesButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        signOut(v);
+                    }
+                });
+                ImageButton noButton = dialogView.findViewById(R.id.noButton);
+                noButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        alertDialog.dismiss();
+                    }
+                });
             }
         });
 

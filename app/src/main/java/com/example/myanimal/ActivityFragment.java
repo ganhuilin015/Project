@@ -6,13 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-public class EarnFragment extends Fragment {
+public class ActivityFragment extends Fragment {
 
     private NavBar navBar;
     private int coinCount;
@@ -21,7 +22,7 @@ public class EarnFragment extends Fragment {
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.earn_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_fragment, container, false);
 
         //Initialize viewModel to get the data from hunger view model for the same profile picture
         viewModel = new ViewModelProvider(requireActivity()).get(HungerViewModel.class);
@@ -33,23 +34,12 @@ public class EarnFragment extends Fragment {
             navBar = (NavBar) getActivity();
         }
 
-        ImageButton earning = view.findViewById(R.id.earningButton);
-        earning.setOnClickListener(new View.OnClickListener(){
+        ImageButton earnButton = view.findViewById(R.id.earnButton);
+        earnButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                coinCount = navBar.getCoinCount();
-                // Update the coin count
-                coinCount++;
-                navBar.updateCoinCount(coinCount);
-            }
-        });
-
-        ImageButton backArrow = view.findViewById(R.id.backarrow);
-        backArrow.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                navController.navigate(R.id.to_activity);
-                navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
+            public void onClick(View v) {
+                navController.navigate(R.id.to_earn);
+                navBar.main.setBackgroundColor(Color.parseColor("#B1D5FF"));
             }
         });
 
