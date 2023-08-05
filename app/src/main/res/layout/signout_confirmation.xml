@@ -23,6 +23,7 @@
             android:text="Are you sure you
              want to sign out?"
             android:textStyle="bold"
+            android:fontFamily="monospace"
             android:gravity="center"
             android:textSize="30sp"
             android:layout_gravity="center"

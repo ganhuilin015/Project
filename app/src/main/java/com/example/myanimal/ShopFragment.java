@@ -102,7 +102,6 @@ public class ShopFragment extends Fragment {
                         }
                     });
 
-
                     // Show the dialog
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();

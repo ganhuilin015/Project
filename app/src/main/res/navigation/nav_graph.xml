@@ -48,7 +48,7 @@
     <fragment
         android:id="@+id/destination_activity"
         android:name="com.example.myanimal.ActivityFragment"
-        android:label="Earn">
+        android:label="Activity">
     </fragment>
 
     <fragment
@@ -72,7 +72,13 @@
     <fragment
         android:id="@+id/destination_earn"
         android:name="com.example.myanimal.EarnFragment"
-        android:label="FoodsShop">
+        android:label="Earn">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_walk"
+        android:name="com.example.myanimal.WalkFragment"
+        android:label="Walk">
     </fragment>
 
     <action
@@ -102,6 +108,10 @@
     <action
         android:id="@+id/to_activity"
         app:destination="@id/destination_activity"/>
+
+    <action
+        android:id="@+id/to_walk"
+        app:destination="@id/destination_walk"/>
 
 
 

@@ -1,0 +1,58 @@
+<!-- earn_fragment.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_red"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/backarrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/backarrow"
+        android:layout_gravity="start"
+        android:paddingLeft="20dp"
+        android:background="@android:color/transparent"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Steps: 0"
+            android:textSize="30sp"
+            android:id="@+id/stepCountTextView"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:padding="40dp"
+            android:fontFamily="monospace"/>
+
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gifImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginBottom="-50dp"
+                android:src="@raw/petswalking_nobackground" />
+
+
+            <ImageButton
+                android:id="@+id/walkingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/startwalking" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

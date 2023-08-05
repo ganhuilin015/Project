@@ -9,14 +9,20 @@ public class HungerViewModel extends ViewModel {
     private MutableLiveData<Integer> tired =  new MutableLiveData<>();
     private MutableLiveData<Integer> health =  new MutableLiveData<>();
     private MutableLiveData<Integer> happy =  new MutableLiveData<>();
+    private MutableLiveData<Integer> totalSteps =  new MutableLiveData<>();
+
 
     private String profileImage = new String();
     private int lightImage = R.drawable.lamp_light_;
+    private int walkImage = R.drawable.startwalking;
+
 
     private int colorPicked = 0xFFFFFFFF ;
     private String profileName = "Your Name";
     private String profileDOB = "Date-of-birth";
     private String profileBio = "Your Bio";
+    private int initialSteps;
+    private boolean stepsBool, regBool;
 
 
 
@@ -118,6 +124,56 @@ public class HungerViewModel extends ViewModel {
     public int getLightImageUri(){
 
         return lightImage;
+    }
+
+    public void setWalkImageUri(int walkImg){
+
+        this.walkImage = walkImg;
+    }
+
+    public int getWalkImageUri(){
+
+        return walkImage;
+    }
+
+    public void setSteps(int steps){
+
+        totalSteps.setValue(steps);
+    }
+
+    public LiveData<Integer>  getSteps(){
+
+        return totalSteps;
+    }
+
+    public void setInitialSteps(int steps){
+
+        this.initialSteps = steps;
+    }
+
+    public int getInitialSteps(){
+
+        return initialSteps;
+    }
+
+    public void setStepsBool(boolean stepsBool){
+
+        this.stepsBool = stepsBool;
+    }
+
+    public boolean getStepsBool(){
+
+        return stepsBool;
+    }
+
+    public void setRegisteredBool(boolean reg){
+
+        this.regBool = reg;
+    }
+
+    public boolean getRegisteredBool(){
+
+        return regBool;
     }
 
 }

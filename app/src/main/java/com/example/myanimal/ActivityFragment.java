@@ -19,6 +19,7 @@ public class ActivityFragment extends Fragment {
     private int coinCount;
     private NavController navController;
     private HungerViewModel viewModel;
+    private ImageButton earnButton, walkButton, vetButton, diaryButton;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class ActivityFragment extends Fragment {
             navBar = (NavBar) getActivity();
         }
 
-        ImageButton earnButton = view.findViewById(R.id.earnButton);
+        earnButton = view.findViewById(R.id.earnButton);
         earnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +43,16 @@ public class ActivityFragment extends Fragment {
                 navBar.main.setBackgroundColor(Color.parseColor("#B1D5FF"));
             }
         });
+
+        walkButton = view.findViewById(R.id.walkButton);
+        walkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.to_walk);
+                navBar.main.setBackgroundColor(Color.parseColor("#FFC7C2"));
+            }
+        });
+
 
         return view;
     }
