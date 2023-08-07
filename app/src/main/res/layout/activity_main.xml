@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:background="#D85682"
+                android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/coin"
                 android:drawablePadding="30dp"
                 android:textColor="@android:color/white"

@@ -29,8 +29,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 public class WalkFragment extends Fragment implements SensorEventListener {
 
@@ -42,11 +49,14 @@ public class WalkFragment extends Fragment implements SensorEventListener {
     private  int initialStepCount, stepsTaken;
     private HungerViewModel viewModel;
     private TextView stepCountTextView;
-    private ImageButton walkButton, backArrow;
+    private ImageButton walkButton, backArrow, recordButton;
     private boolean isSensorListenerRegistered = false;
     private LifecycleOwner viewLifecycleOwner;
     private NavBar navBar;
     private NavController navController;
+    private List<Record> recordList = new ArrayList<>();
+    ;
+    private RecordAdapter recordAdapter;
 
 
 
@@ -92,6 +102,8 @@ public class WalkFragment extends Fragment implements SensorEventListener {
         isStartButtonPressed = viewModel.getStepsBool();
         isSensorListenerRegistered = viewModel.getRegisteredBool();
 
+        recordAdapter = new RecordAdapter(recordList);
+
         walkButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -106,6 +118,15 @@ public class WalkFragment extends Fragment implements SensorEventListener {
                     viewModel.setStepsBool(false);
                     walkButton.setImageResource(R.drawable.startwalking);
                     viewModel.setWalkImageUri(R.drawable.startwalking);
+
+                    //Add new record
+                    String currentDateandTime = getCurrentDateAndTime();
+                    int totalStepsTaken = getStepsTaken();
+                    Record newRecord = new Record(currentDateandTime, totalStepsTaken);
+                    recordList.add(newRecord);
+                    recordAdapter.notifyItemInserted(recordList.size() - 1);
+                    viewModel.addRecord(newRecord);
+
                     viewModel.setSteps(0);
                     updateStepCount(stepsTaken);
                     onStop();
@@ -119,6 +140,15 @@ public class WalkFragment extends Fragment implements SensorEventListener {
             public void onClick(View v){
                 navController.navigate(R.id.to_activity);
                 navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
+            }
+        });
+
+        recordButton = view.findViewById(R.id.record_button);
+        recordButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                navController.navigate(R.id.to_record);
+                navBar.main.setBackgroundColor(Color.parseColor("#FEFA9D"));
             }
         });
 
@@ -189,6 +219,16 @@ public class WalkFragment extends Fragment implements SensorEventListener {
     private void updateStepCount(int steps) {
         stepCountTextView.setText(getString(R.string.total_steps, steps));
         Log.d("Step Taken Updated", String.valueOf(stepsTaken));
+    }
+
+    private String getCurrentDateAndTime(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(calendar.getTime());
+    }
+
+    private int getStepsTaken() {
+        return stepsTaken;
     }
 
 }

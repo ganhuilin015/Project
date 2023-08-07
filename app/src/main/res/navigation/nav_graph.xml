@@ -81,6 +81,18 @@
         android:label="Walk">
     </fragment>
 
+    <fragment
+        android:id="@+id/destination_record"
+        android:name="com.example.myanimal.RecordFragment"
+        android:label="Record">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_addfeed"
+        android:name="com.example.myanimal.AddFeedFragment"
+        android:label="Add Feed">
+    </fragment>
+
     <action
         android:id="@+id/to_AuthenticationActivity"
         app:destination="@id/destination_authenticationActivity"/>
@@ -112,6 +124,14 @@
     <action
         android:id="@+id/to_walk"
         app:destination="@id/destination_walk"/>
+
+    <action
+        android:id="@+id/to_record"
+        app:destination="@id/destination_record"/>
+
+    <action
+        android:id="@+id/to_addfeed"
+        app:destination="@id/destination_addfeed"/>
 
 
 

@@ -1,8 +1,13 @@
 package com.example.myanimal;
 
+import android.graphics.Bitmap;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HungerViewModel extends ViewModel {
     private MutableLiveData<Integer> hunger= new MutableLiveData<>();
@@ -13,6 +18,8 @@ public class HungerViewModel extends ViewModel {
 
 
     private String profileImage = new String();
+    private String feedImage = new String();
+
     private int lightImage = R.drawable.lamp_light_;
     private int walkImage = R.drawable.startwalking;
 
@@ -23,6 +30,12 @@ public class HungerViewModel extends ViewModel {
     private String profileBio = "Your Bio";
     private int initialSteps;
     private boolean stepsBool, regBool;
+    private List<Record> recordList = new ArrayList<>();
+    private List<FeedItem> feedList = new ArrayList<>();
+
+
+    private Bitmap feedBitmap;
+
 
 
 
@@ -175,5 +188,40 @@ public class HungerViewModel extends ViewModel {
 
         return regBool;
     }
+
+    public void addRecord(Record record) {
+        recordList.add(0, record);
+    }
+    public List<Record> getRecordList() {
+        return recordList;
+    }
+
+    public void addFeed(FeedItem feeds) {
+        feedList.add(0, feeds);
+    }
+    public List<FeedItem> getFeedList() {
+        return feedList;
+    }
+
+    public void setFeedImageUri(String feedImg){
+
+        this.feedImage = feedImg;
+    }
+
+    public String getFeedImageUri(){
+
+        return feedImage;
+    }
+    public void setFeedImageBitmap(Bitmap feedbitmp){
+
+        this.feedBitmap = feedbitmp;
+    }
+
+    public Bitmap getFeedImageBitmap(){
+
+        return feedBitmap;
+    }
+
+
 
 }

@@ -1,0 +1,79 @@
+<!-- diary_fragment.xml -->
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/theme_yellow"
+    android:paddingBottom="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/record_background"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/description_card_background">
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:textColor="@color/grey"
+                android:background="@android:color/transparent"
+                android:text="Date and Time"
+                android:padding="10dp"
+                android:fontFamily="monospace" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Steps: "
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/grey"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp"
+                    android:fontFamily="monospace"/>
+
+                <TextView
+                    android:id="@+id/entryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/grey"
+                    android:background="@android:color/transparent"
+                    android:text="Steps"
+                    android:padding="10dp"
+                    android:fontFamily="monospace"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/love_deco"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            android:layout_gravity="end|bottom"/>
+
+    </FrameLayout>
+
+</LinearLayout>

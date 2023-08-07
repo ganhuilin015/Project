@@ -102,11 +102,11 @@
                             break;
 
                         case 5:
-                            getWindow().setNavigationBarColor(Color.parseColor("#2196F3"));
-                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#2196F3"));
-                            getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
-                            main.setBackgroundColor(Color.parseColor("#FF03DAC5"));
-                            toolbar.setBackgroundColor(Color.parseColor("#FF03DAC5"));
+                            getWindow().setNavigationBarColor(Color.parseColor("#CED5D5"));
+                            bottomNavigation.setBackgroundBottomColor(Color.parseColor("#CED5D5"));
+                            getWindow().setStatusBarColor(Color.parseColor("#CED5D5"));
+                            main.setBackgroundColor(Color.parseColor("#B1D5FF"));
+                            toolbar.setBackgroundColor(Color.parseColor("#CED5D5"));
                             break;
 
 
