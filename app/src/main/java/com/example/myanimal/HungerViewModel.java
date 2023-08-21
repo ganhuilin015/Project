@@ -1,6 +1,9 @@
 package com.example.myanimal;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.PointF;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,6 +19,9 @@ public class HungerViewModel extends ViewModel {
     private MutableLiveData<Integer> happy =  new MutableLiveData<>();
     private MutableLiveData<Integer> totalSteps =  new MutableLiveData<>();
 
+    private MutableLiveData<List<FeedItem>> feedItemList = new MutableLiveData<>();
+//    private MutableLiveData<PointF> imageTranslation = new MutableLiveData<>();
+
 
     private String profileImage = new String();
     private String feedImage = new String();
@@ -29,13 +35,17 @@ public class HungerViewModel extends ViewModel {
     private String profileDOB = "Date-of-birth";
     private String profileBio = "Your Bio";
     private int initialSteps;
+    private int homeBackground = Color.parseColor("#81FEC2");
     private boolean stepsBool, regBool;
     private List<Record> recordList = new ArrayList<>();
+    private List<GalleryItem> galleryList = new ArrayList<>();
+
     private List<FeedItem> feedList = new ArrayList<>();
+    private MutableLiveData<List<FeedItem>> feedItemsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<PointF> imageTranslation = new MutableLiveData<>();
 
-
-    private Bitmap feedBitmap;
-
+//    private PointF imageTranslation = new PointF(0, 0);
+    private Matrix matrixTransformation;
 
 
 
@@ -90,12 +100,12 @@ public class HungerViewModel extends ViewModel {
         return profileImage;
     }
 
-//    public void setColorPicked(int color){
+//    public void setColorPickedDraw(int color){
 //
 //        this.colorPicked = color;
 //    }
 //
-//    public int getColorPicked(){
+//    public int getColorPickedDraw(){
 //
 //        return colorPicked;
 //    }
@@ -179,6 +189,14 @@ public class HungerViewModel extends ViewModel {
         return stepsBool;
     }
 
+    public int getHomeBackground(){
+        return homeBackground;
+    }
+
+    public void setHomeBackground(int backColor){
+        this.homeBackground = backColor;
+    }
+
     public void setRegisteredBool(boolean reg){
 
         this.regBool = reg;
@@ -196,12 +214,22 @@ public class HungerViewModel extends ViewModel {
         return recordList;
     }
 
+    public void addGallery(GalleryItem gallery) {
+        galleryList.add(0, gallery);
+    }
+    public List<GalleryItem> getGalleryList() {
+        return galleryList;
+    }
+
     public void addFeed(FeedItem feeds) {
         feedList.add(0, feeds);
     }
+
     public List<FeedItem> getFeedList() {
         return feedList;
     }
+
+
 
     public void setFeedImageUri(String feedImg){
 
@@ -212,16 +240,13 @@ public class HungerViewModel extends ViewModel {
 
         return feedImage;
     }
-    public void setFeedImageBitmap(Bitmap feedbitmp){
 
-        this.feedBitmap = feedbitmp;
+    public void setMatrixTransformation(Matrix matrix){
+        this.matrixTransformation = matrix;
     }
 
-    public Bitmap getFeedImageBitmap(){
-
-        return feedBitmap;
+    public Matrix getMatrixTransformation(){
+        return matrixTransformation;
     }
-
-
 
 }

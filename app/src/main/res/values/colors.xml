@@ -19,4 +19,5 @@
     <color name="theme_pink">#EFCCFF</color>
     <color name="theme_red">#FFC7C2</color>
     <color name="theme_grey">#CED5D5</color>
+    <color name="theme_dim_green">#81C2A3</color>
 </resources>

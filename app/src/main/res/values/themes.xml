@@ -6,7 +6,6 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize other attributes as needed -->
     </style>
 
     <style name="TransparentAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">

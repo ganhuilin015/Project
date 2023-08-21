@@ -1,0 +1,28 @@
+<!-- item_feed.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textColor="@color/grey"
+        android:background="@android:color/transparent"
+        android:text="Date and Time"
+        android:padding="10dp"
+        android:fontFamily="monospace" />
+
+    <ImageView
+        android:id="@+id/galleryView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/person" />
+
+</LinearLayout>

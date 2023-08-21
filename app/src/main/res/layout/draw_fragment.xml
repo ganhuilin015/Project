@@ -1,0 +1,125 @@
+<!-- earn_fragment.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_blue"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/backarrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/backarrow"
+        android:layout_gravity="start"
+        android:paddingLeft="20dp"
+        android:background="@android:color/transparent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttons"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/switch_click_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="-60dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/click_switch_button"/>
+
+        <ImageButton
+            android:id="@+id/draw_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/draw_button"/>
+
+        <ImageButton
+            android:id="@+id/block_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="-60dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/block_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+
+        <com.example.myanimal.DrawingView
+            android:id="@+id/drawingView"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/drawingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/brush"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/colorPickerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/color_picker"
+            android:background="@android:color/transparent"/>
+
+
+        <ImageButton
+            android:id="@+id/eraserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eraser"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/saveDrawing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/save"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/clearDrawing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clear"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/gallery"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/gallery"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@android:color/transparent"/>-->
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

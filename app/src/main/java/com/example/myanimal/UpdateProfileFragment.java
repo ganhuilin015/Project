@@ -77,6 +77,7 @@ public class UpdateProfileFragment extends Fragment {
         editDOB.setText(viewModel.getProfileDOB());
 
         editName = view.findViewById(R.id.edit_name);
+        editName.addTextChangedListener(nameWatcher);
         editName.setText(viewModel.getProfileName());
 
         calendar = Calendar.getInstance();
@@ -252,6 +253,30 @@ public class UpdateProfileFragment extends Fragment {
             int maxWords = 100; // Set the maximum number of words here
             if (editable.length() > maxWords) {
                 editable.replace(maxWords, editable.length(), "");
+                Toast.makeText(requireContext(), "Reached maximum words", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
+    //For name to set a maximum amount of word so it does not goes over the limit
+    private TextWatcher nameWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+            // Not used
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            // Not used
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            int maxWords = 20; // Set the maximum number of words here
+            if (editable.length() > maxWords) {
+                editable.replace(maxWords, editable.length(), "");
+                Toast.makeText(requireContext(), "Reached maximum words", Toast.LENGTH_SHORT).show();
             }
         }
     };

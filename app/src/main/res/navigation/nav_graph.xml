@@ -93,6 +93,25 @@
         android:label="Add Feed">
     </fragment>
 
+    <fragment
+        android:id="@+id/destination_draw"
+        android:name="com.example.myanimal.DrawFragment"
+        android:label="Draw">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_gallery"
+        android:name="com.example.myanimal.GalleryFragment"
+        android:label="Gallery">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_block"
+        android:name="com.example.myanimal.BlockFragment"
+        android:label="Block">
+    </fragment>
+
+
     <action
         android:id="@+id/to_AuthenticationActivity"
         app:destination="@id/destination_authenticationActivity"/>
@@ -132,6 +151,19 @@
     <action
         android:id="@+id/to_addfeed"
         app:destination="@id/destination_addfeed"/>
+
+    <action
+        android:id="@+id/to_draw"
+        app:destination="@id/destination_draw"/>
+
+    <action
+        android:id="@+id/to_gallery"
+        app:destination="@id/destination_gallery"/>
+
+    <action
+        android:id="@+id/to_block"
+        app:destination="@id/destination_block"/>
+
 
 
 

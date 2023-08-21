@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -39,6 +40,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -68,26 +70,20 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class ProfileFragment extends Fragment{
     private NavBar navBar;
     private static final int REQUEST_PICK_IMAGE = 101;
-    private static final int REQUEST_CAMERA_PERMISSION = 100;
-
     private View view;
     private OnChangeImageButtonClickListener changeImageButtonClickListener;
     private HungerViewModel viewModel;
     private TextView textViewTitle, bioTitle, dobTitle;
     private NavController navController;
     private FirebaseAuth firebaseAuth;
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICKER = 2;
-
-    private List<FeedItem> feedItemList;
+    private List<FeedItem> feedItemList  = new ArrayList<>();;
     private FeedAdapter feedadapter;
 
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.profile_fragment, container, false);
-        Log.d("ProfileFragment", "Fragment instance: " + this.toString());
 
         //Initialize viewModel to get the data from hunger view model for the same profile picture
         viewModel = new ViewModelProvider(requireActivity()).get(HungerViewModel.class);
@@ -103,6 +99,7 @@ public class ProfileFragment extends Fragment{
         //Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //When sign out button is clicked
         ImageButton sign_out_button = view.findViewById(R.id.signoutButton);
         sign_out_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -118,6 +115,7 @@ public class ProfileFragment extends Fragment{
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
 
+                //When yes button is clicked
                 ImageButton yesButton = dialogView.findViewById(R.id.yesButton);
                 yesButton.setOnClickListener(new View.OnClickListener(){
                     @Override
@@ -125,6 +123,8 @@ public class ProfileFragment extends Fragment{
                         signOut(v);
                     }
                 });
+
+                //When no button is clicked
                 ImageButton noButton = dialogView.findViewById(R.id.noButton);
                 noButton.setOnClickListener(new View.OnClickListener(){
                     @Override
@@ -137,7 +137,7 @@ public class ProfileFragment extends Fragment{
 
         //If image uri is not null or empty string, then get the uri image that user chose and set as profile picture
         if ((!viewModel.getImageUri().equals(null)) && (!viewModel.getImageUri().equals(""))){
-            Uri imageUri = Uri.parse(viewModel.getImageUri().toString());
+            Uri imageUri = Uri.parse(viewModel.getImageUri());
             onImageSelected(imageUri);
         } else {
             //If image uri is null, will be set to default image pokemon
@@ -174,8 +174,6 @@ public class ProfileFragment extends Fragment{
         String profile_bio = viewModel.getProfileBio().trim();
         String profile_dob = viewModel.getProfileDOB().trim();
 
-        System.out.println(profile_name);
-
         //Then set the information in profile from view model if not empty
         if (!profile_name.equals("") || !profile_name.equals(null) ){
             textViewTitle.setText(profile_name);
@@ -197,22 +195,23 @@ public class ProfileFragment extends Fragment{
             }
         });
 
-        feedItemList = new ArrayList<>();
+        //Update the feed item list and pass it into the feed adapter
         feedItemList = viewModel.getFeedList();
         feedadapter = new FeedAdapter(feedItemList);
 
-
+        //Set the recycler view adapter to feed adapter
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewFeed);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(feedadapter);
 
+        //When plus button click to add feed
         ImageButton plusButton = view.findViewById(R.id.plusButton);
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Request to pick image from gallery
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, REQUEST_IMAGE_PICKER);
-
             }
         });
 
@@ -262,19 +261,26 @@ public class ProfileFragment extends Fragment{
 //        colorPickerDialog.show();
 //    }
 
+    //Sign out the user from the app
     public void signOut(View view) {
         firebaseAuth.signOut();
         navController.navigate(R.id.to_AuthenticationActivity);
     }
+
+    //When image is picked to add to feed
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_PICKER && data != null) {
                 Uri imageUri = data.getData();
+
+                //Pass image uri into view model
                 viewModel.setFeedImageUri(imageUri != null ? imageUri.toString() : null);
-                Log.d("navigate to addfeed image", String.valueOf(imageUri.toString()));
+
+                //Navigate to add feed
                 navController.navigate(R.id.to_addfeed);
+                navBar.main.setBackgroundColor(Color.parseColor("#81FEC2"));
 
             }
         }

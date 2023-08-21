@@ -60,7 +60,6 @@ public class RecordFragment extends Fragment {
         recordRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recordRecyclerView.setAdapter(recordAdapter);
 
-
         return view;
 
     }

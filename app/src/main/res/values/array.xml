@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="image_source_options">
-        <item>Camera</item>
-        <item>Gallery</item>
-    </string-array>
-</resources>

@@ -1,6 +1,8 @@
 package com.example.myanimal;
 
 
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,6 +36,7 @@ public class HomeFragment extends Fragment {
     private static final String HUNGER_KEY = "hunger_key";
     private static final String IMAGE_RES_KEY = "image_res_key";
     private HungerViewModel viewModel;
+    private MediaPlayer mediaPlayer;
 
     public HomeFragment() {
     }
@@ -46,6 +50,12 @@ public class HomeFragment extends Fragment {
 
 //        ImageView gifImageView = view.findViewById(R.id.gifImageView);
 //        Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
+
+        LinearLayout homeMain = view.findViewById(R.id.home_main);
+
+        homeMain.setBackgroundColor(viewModel.getHomeBackground());
+        Log.d("Initial home backgroun doclor", String.valueOf(viewModel.getHomeBackground()));
+        navBar.main.setBackgroundColor(viewModel.getHomeBackground());
 
         ImageButton feedButton = view.findViewById(R.id.feedButton);
         feedButton.setOnClickListener(new View.OnClickListener() {
@@ -79,12 +89,38 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (IsLightOn) {
+                    mediaPlayer = MediaPlayer.create(requireContext(), R.raw.pullcord_switch);
+
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mediaPlayer.release();
+                        }
+                    });
+
                     sleepButton.setImageResource(R.drawable.lamp_dim_);
                     viewModel.setLightImageUri(R.drawable.lamp_dim_);
+                    homeMain.setBackgroundColor(Color.parseColor("#81C2A3"));
+                    navBar.main.setBackgroundColor(Color.parseColor("#81C2A3"));
+                    viewModel.setHomeBackground(Color.parseColor("#81C2A3"));
                     IsLightOn = false;
                 } else {
+                    mediaPlayer = MediaPlayer.create(requireContext(), R.raw.pullcord_switch);
+
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mediaPlayer.release();
+                        }
+                    });
+
                     sleepButton.setImageResource(R.drawable.lamp_light_);
                     viewModel.setLightImageUri(R.drawable.lamp_light_);
+                    homeMain.setBackgroundColor(Color.parseColor("#81FEC2"));
+                    navBar.main.setBackgroundColor(Color.parseColor("#81FEC2"));
+                    viewModel.setHomeBackground(Color.parseColor("#81FEC2"));
                     IsLightOn = true;
                 }
             }

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/theme_green"
+    android:id="@+id/home_main"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
