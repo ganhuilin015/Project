@@ -1,15 +1,11 @@
 package com.example.myanimal;
 
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -47,10 +38,10 @@ public class DrawFragment extends Fragment {
     private ImageButton colorPickerButton;
     private int selectedColor = Color.BLACK;
     private DrawingView drawingView;
-    private List<GalleryItem> galleryList = new ArrayList<>();
-    private GalleryAdapter galleryAdapter;
+    private PetsAdapter galleryAdapter;
     private Bitmap drawingBitmap;
     private int coinCount;
+    private MediaPlayer mediaPlayer;
 
 
 
@@ -89,6 +80,16 @@ public class DrawFragment extends Fragment {
         backArrow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                mediaPlayer = MediaPlayer.create(requireContext(), R.raw.click_back);
+
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mediaPlayer.release();
+                    }
+                });
+
                 navController.navigate(R.id.to_activity);
                 navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
             }
@@ -104,7 +105,7 @@ public class DrawFragment extends Fragment {
         });
 
         drawingView = view.findViewById(R.id.drawingView);
-        galleryAdapter = new GalleryAdapter(galleryList);
+//        galleryAdapter = new PetsAdapter(galleryList);
 
         ImageButton saveDrawing = view.findViewById(R.id.saveDrawing);
         saveDrawing.setOnClickListener(new View.OnClickListener() {
@@ -115,11 +116,11 @@ public class DrawFragment extends Fragment {
                 String imagePath = saveBitmapToFile(drawingBitmap);
                 Log.d("Draw fragment", String.valueOf(imagePath));
                 //Add new record
-                String currentDateandTime = getCurrentDateAndTime();
-                GalleryItem newGallery = new GalleryItem(currentDateandTime, imagePath);
-                galleryList.add(newGallery);
-                galleryAdapter.notifyItemInserted(galleryList.size() - 1);
-                viewModel.addGallery(newGallery);
+//                String currentDateandTime = getCurrentDateAndTime();
+//                PetsItem newGallery = new PetsItem(currentDateandTime, imagePath);
+//                galleryList.add(newGallery);
+//                galleryAdapter.notifyItemInserted(galleryList.size() - 1);
+//                viewModel.addGallery(newGallery);
                 Toast.makeText(requireContext(),"Saved", Toast.LENGTH_SHORT).show();
 
 

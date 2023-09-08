@@ -67,7 +67,7 @@ import java.util.List;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 
-public class ProfileFragment extends Fragment{
+public class ProfileFragment extends Fragment {
     private NavBar navBar;
     private static final int REQUEST_PICK_IMAGE = 101;
     private View view;
@@ -99,6 +99,7 @@ public class ProfileFragment extends Fragment{
         //Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         //When sign out button is clicked
         ImageButton sign_out_button = view.findViewById(R.id.signoutButton);
         sign_out_button.setOnClickListener(new View.OnClickListener(){
@@ -123,6 +124,7 @@ public class ProfileFragment extends Fragment{
                         signOut(v);
                     }
                 });
+
 
                 //When no button is clicked
                 ImageButton noButton = dialogView.findViewById(R.id.noButton);
@@ -285,4 +287,6 @@ public class ProfileFragment extends Fragment{
             }
         }
     }
+
+
 }

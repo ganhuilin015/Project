@@ -82,6 +82,16 @@ public class EarnFragment extends Fragment {
         backArrow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                mediaPlayer = MediaPlayer.create(requireContext(), R.raw.click_back);
+
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mediaPlayer.release();
+                    }
+                });
+
                 navController.navigate(R.id.to_activity);
                 navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
             }

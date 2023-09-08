@@ -3,7 +3,7 @@
     android:layout_height="500dp"
     android:layout_gravity="center"
     android:id="@+id/description_box"
-    android:background="@drawable/description_card_background_color">
+    android:background="@drawable/description_card_background_green">
 
 
         <LinearLayout
@@ -17,12 +17,23 @@
 
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/description_image"
+                android:layout_width="300dp"
                 android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
                 android:paddingTop="10dp"
-                android:src="@drawable/fox"
+                android:src="@drawable/elephant"
                 android:background="@android:color/transparent"/>
 
+            <TextView
+                android:id="@+id/petsName_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:text="Elephant"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/description_text"
@@ -33,8 +44,9 @@
                     android:text="0"
                     android:drawableLeft="@drawable/coin"
                     android:drawablePadding="30dp"
+                    android:padding="5dp"
                     android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:textSize="20sp" />
 
 
             <ImageButton
@@ -42,6 +54,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/purchasebutton"
                 android:layout_gravity="center"
+                android:layout_marginTop="-20dp"
                 android:id="@+id/purchaseButton"
                 android:background="@android:color/transparent"/>
 

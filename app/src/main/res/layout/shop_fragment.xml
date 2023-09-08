@@ -67,6 +67,17 @@
                         android:textColor="@color/black"
                         android:padding="16dp"/>
 
+                    <TextView
+                        android:id="@+id/petsNameTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Elephant"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,7 +92,7 @@
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/elephant" />
+                        app:srcCompat="@drawable/squirrel" />
 
                     <TextView
                         android:id="@+id/petsTextView1"
@@ -93,6 +104,17 @@
                         android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/petsNameTextView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Squirrel"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
 
                 </LinearLayout>
 
@@ -117,13 +139,24 @@
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/elephant" />
+                        app:srcCompat="@drawable/fox" />
 
                     <TextView
                         android:id="@+id/petsTextView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="80"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
+
+                    <TextView
+                        android:id="@+id/petsNameTextView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fox"
                         android:visibility="gone"
                         android:textSize="20dp"
                         android:gravity="center"
@@ -144,7 +177,7 @@
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/elephant" />
+                        app:srcCompat="@drawable/cat" />
 
                     <TextView
                         android:id="@+id/petsTextView3"
@@ -156,6 +189,17 @@
                         android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/petsNameTextView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cat"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
 
                 </LinearLayout>
 
@@ -179,13 +223,24 @@
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/elephant" />
+                        app:srcCompat="@drawable/dog" />
 
                     <TextView
                         android:id="@+id/petsTextView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
+
+                    <TextView
+                        android:id="@+id/petsNameTextView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dog"
                         android:visibility="gone"
                         android:textSize="20dp"
                         android:gravity="center"
@@ -206,7 +261,7 @@
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/elephant" />
+                        app:srcCompat="@drawable/panda" />
 
                     <TextView
                         android:id="@+id/petsTextView5"
@@ -218,6 +273,17 @@
                         android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/petsNameTextView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Panda"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
 
                 </LinearLayout>
 
@@ -253,6 +319,17 @@
                         android:textColor="@color/black"
                         android:padding="16dp"/>
 
+                    <TextView
+                        android:id="@+id/petsNameTextView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Elephant"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -279,6 +356,17 @@
                         android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/petsNameTextView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Elephant"
+                        android:visibility="gone"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:padding="16dp"/>
 
                 </LinearLayout>
 

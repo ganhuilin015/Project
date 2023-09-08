@@ -53,6 +53,23 @@ public class ActivityFragment extends Fragment {
             }
         });
 
+        diaryButton = view.findViewById(R.id.diaryButton);
+        diaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate((R.id.to_diary));
+                navBar.main.setBackgroundColor(Color.parseColor("#81FEC2"));
+            }
+        });
+
+        vetButton = view.findViewById(R.id.vetButton);
+        vetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.to_vet);
+                navBar.main.setBackgroundColor(Color.parseColor("#EFCCFF"));
+            }
+        });
 
         return view;
     }

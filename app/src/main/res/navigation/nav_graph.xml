@@ -100,16 +100,37 @@
     </fragment>
 
     <fragment
-        android:id="@+id/destination_gallery"
-        android:name="com.example.myanimal.GalleryFragment"
-        android:label="Gallery">
-    </fragment>
-
-    <fragment
         android:id="@+id/destination_block"
         android:name="com.example.myanimal.BlockFragment"
         android:label="Block">
     </fragment>
+
+    <fragment
+        android:id="@+id/destination_diary"
+        android:name="com.example.myanimal.DiaryFragment"
+        android:label="Diary">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_adddiarynote"
+        android:name="com.example.myanimal.AddDiaryNoteFragment"
+        android:label="AddDiaryNote">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/destination_adddiaryvoice"
+        android:name="com.example.myanimal.AddDiaryVoiceFragment"
+        android:label="AddDiaryVoice">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_vet"
+        android:name="com.example.myanimal.VetFragment"
+        android:label="Vet">
+    </fragment>
+
+
 
 
     <action
@@ -156,15 +177,25 @@
         android:id="@+id/to_draw"
         app:destination="@id/destination_draw"/>
 
-    <action
-        android:id="@+id/to_gallery"
-        app:destination="@id/destination_gallery"/>
 
     <action
         android:id="@+id/to_block"
         app:destination="@id/destination_block"/>
 
+    <action
+        android:id="@+id/to_diary"
+        app:destination="@id/destination_diary"/>
 
+    <action
+        android:id="@+id/to_adddiarynote"
+        app:destination="@id/destination_adddiarynote"/>
 
+    <action
+        android:id="@+id/to_adddiaryvoice"
+        app:destination="@id/destination_adddiaryvoice"/>
+
+    <action
+        android:id="@+id/to_vet"
+        app:destination="@id/destination_vet"/>
 
 </navigation>

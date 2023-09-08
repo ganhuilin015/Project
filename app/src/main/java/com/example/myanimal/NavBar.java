@@ -9,6 +9,7 @@
     import androidx.navigation.Navigation;
     import android.content.Intent;
     import android.graphics.Color;
+    import android.media.MediaPlayer;
     import android.net.Uri;
     import android.os.Bundle;
     import android.os.Handler;
@@ -42,6 +43,7 @@
         private HungerViewModel viewModel;
         private static final int REQUEST_PICK_IMAGE = 101;
         private static final int REQUEST_CAPTURE_IMAGE = 102;
+        private MediaPlayer mediaPlayer;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,15 @@
             bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
                 @Override
                 public void onClickItem(MeowBottomNavigation.Model item) {
-                    // your codes
+                    mediaPlayer = MediaPlayer.create(NavBar.this, R.raw.water_drip);
+
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mediaPlayer.release();
+                        }
+                    });
                     switch (item.getId()){
                         case 1:
                             getWindow().setNavigationBarColor(Color.parseColor("#B1D5FF"));

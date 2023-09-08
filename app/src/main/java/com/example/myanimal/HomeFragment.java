@@ -1,6 +1,7 @@
 package com.example.myanimal;
 
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,10 +19,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-public class HomeFragment extends Fragment {
+import java.util.List;
+
+public class HomeFragment extends Fragment implements PetsAdapter.OnItemClickListener{
 
     private NavBar navBar;
     private int coinCount;
@@ -37,6 +42,10 @@ public class HomeFragment extends Fragment {
     private static final String IMAGE_RES_KEY = "image_res_key";
     private HungerViewModel viewModel;
     private MediaPlayer mediaPlayer;
+    private PetsAdapter petsAdapter;
+    private RecyclerView petsRecyclerView;
+    private AlertDialog alertDialog;
+    private ImageView petsImageView;
 
     public HomeFragment() {
     }
@@ -51,6 +60,14 @@ public class HomeFragment extends Fragment {
 //        ImageView gifImageView = view.findViewById(R.id.gifImageView);
 //        Glide.with(this).asGif().load(R.raw.poke).into(gifImageView);
 
+        petsImageView = view.findViewById(R.id.petsImageView);
+        petsImageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showPetsDialog(v);
+            }
+        });
+
         LinearLayout homeMain = view.findViewById(R.id.home_main);
 
         homeMain.setBackgroundColor(viewModel.getHomeBackground());
@@ -61,6 +78,7 @@ public class HomeFragment extends Fragment {
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (hunger < 110) {
                     hunger++;
                 }
@@ -68,6 +86,16 @@ public class HomeFragment extends Fragment {
                 int coinValue = navBar.getCoinCount();
 
                 if (coinValue > 9 && viewModel.getLightImageUri() == R.drawable.lamp_light_){
+                    mediaPlayer = MediaPlayer.create(requireContext(), R.raw.eating_treat);
+
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mediaPlayer.release();
+                        }
+                    });
+
                     coinValue = coinValue - 10;
                     Log.d("Home Coin", String.valueOf(coinValue));
                     navBar.updateCoinCount(coinValue);
@@ -324,6 +352,39 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    // This method will be called when the ImageView is clicked
+    public void showPetsDialog(View view) {
+        // Inflate the custom layout XML file
+        View dialogView = getLayoutInflater().inflate(R.layout.item_pets_fragment, null);
+
+        // Create the AlertDialog using the custom layout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext(),  R.style.TransparentAlertDialog);
+        alertDialogBuilder.setView(dialogView);
+
+        List<Pets> petslist = viewModel.getPetsList();
+        petsAdapter = new PetsAdapter(petslist, this);
+
+        petsRecyclerView = dialogView.findViewById(R.id.recyclerViewPets);
+        petsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        petsRecyclerView.setAdapter(petsAdapter);
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+        ImageButton crossButton = dialogView.findViewById(R.id.crossButtonInventory);
+        crossButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(Pets item) {
+       alertDialog.dismiss();
+       petsImageView.setImageDrawable(item.getPetsImage());
+    }
 }
 
 

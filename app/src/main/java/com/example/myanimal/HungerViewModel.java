@@ -1,6 +1,5 @@
 package com.example.myanimal;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -38,14 +37,20 @@ public class HungerViewModel extends ViewModel {
     private int homeBackground = Color.parseColor("#81FEC2");
     private boolean stepsBool, regBool;
     private List<Record> recordList = new ArrayList<>();
-    private List<GalleryItem> galleryList = new ArrayList<>();
 
     private List<FeedItem> feedList = new ArrayList<>();
+    private List<Pets> petsList = new ArrayList<>();
+
     private MutableLiveData<List<FeedItem>> feedItemsLiveData = new MutableLiveData<>();
     private final MutableLiveData<PointF> imageTranslation = new MutableLiveData<>();
+    private boolean isPurchased = true;
+    private int purchasedImg = R.drawable.purchasebutton;
+    private ArrayList<Boolean> isPetsPurchasedList = new ArrayList<>();
+    private List<Diary> diaryNoteList = new ArrayList<>();
+    private List<DiaryAudio> diaryVoiceList = new ArrayList<>();
 
-//    private PointF imageTranslation = new PointF(0, 0);
-    private Matrix matrixTransformation;
+
+
 
 
 
@@ -214,19 +219,35 @@ public class HungerViewModel extends ViewModel {
         return recordList;
     }
 
-    public void addGallery(GalleryItem gallery) {
-        galleryList.add(0, gallery);
-    }
-    public List<GalleryItem> getGalleryList() {
-        return galleryList;
-    }
-
     public void addFeed(FeedItem feeds) {
         feedList.add(0, feeds);
     }
 
     public List<FeedItem> getFeedList() {
         return feedList;
+    }
+
+    public List<Pets> getPetsList() {
+        return petsList;
+    }
+    public void addPetsList(Pets pets){
+        petsList.add(0, pets);
+    }
+
+    public void addDiaryNoteList(Diary diarynote){
+        diaryNoteList.add(0, diarynote);
+    }
+
+    public List<Diary> getDiaryNoteList() {
+        return diaryNoteList;
+    }
+
+    public void addDiaryVoiceList(DiaryAudio diaryvoice){
+        diaryVoiceList.add(0, diaryvoice);
+    }
+
+    public List<DiaryAudio> getDiaryVoiceList() {
+        return diaryVoiceList;
     }
 
 
@@ -241,12 +262,13 @@ public class HungerViewModel extends ViewModel {
         return feedImage;
     }
 
-    public void setMatrixTransformation(Matrix matrix){
-        this.matrixTransformation = matrix;
+    public ArrayList<Boolean> getIsPetsPurchasedList(){
+        return isPetsPurchasedList;
     }
 
-    public Matrix getMatrixTransformation(){
-        return matrixTransformation;
+    public void addIsPetsPurchasedList(ArrayList<Boolean> purchasedlist){
+        isPetsPurchasedList = purchasedlist;
     }
+
 
 }

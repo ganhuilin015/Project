@@ -2,6 +2,7 @@ package com.example.myanimal;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class BlockFragment extends Fragment implements View.OnTouchListener{
     private TextView scoreBoard;
     private ImageButton restartButton, startGameButton;
     private float initialMovingObjectX, initialMovingObjectY;
-
+    private MediaPlayer mediaPlayer;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,6 +74,16 @@ public class BlockFragment extends Fragment implements View.OnTouchListener{
         backArrow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                mediaPlayer = MediaPlayer.create(requireContext(), R.raw.click_back);
+
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mediaPlayer.release();
+                    }
+                });
+
                 navController.navigate(R.id.to_activity);
                 navBar.main.setBackgroundColor(Color.parseColor("#CED5D5"));
             }

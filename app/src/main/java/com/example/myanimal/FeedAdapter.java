@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +22,7 @@ import java.util.List;
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder> {
 
     private List<FeedItem> feedItemList;
-    private PointF feedInitialTranslation;
-    private PointF addFeedInitialPosition;
-
-
-
+    private FeedItem item;
 
     public FeedAdapter(List<FeedItem> feedItemList) {
 
@@ -40,7 +38,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FeedViewHolder holder, int position) {
-        FeedItem item = feedItemList.get(position);
+        item = feedItemList.get(position);
 
         Log.d("feed adapter", String.valueOf(holder.itemView.getContext()));
         Glide.with(holder.itemView.getContext())
@@ -51,6 +49,14 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
         holder.imageView.setImageMatrix(item.getFinalPosition());
         holder.captionTextView.setText(item.getCaption());
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                feedItemList.remove(position);
+                notifyDataSetChanged();
+
+            }
+        });
     }
 
     @Override
@@ -58,15 +64,20 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         return feedItemList.size();
     }
 
+
     static class FeedViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView captionTextView;
+        ImageButton deleteButton;
 
         FeedViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             captionTextView = itemView.findViewById(R.id.captionTextView);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+
         }
     }
+
 }
 

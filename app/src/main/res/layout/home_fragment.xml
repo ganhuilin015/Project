@@ -80,12 +80,16 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/petsImageView"
             android:layout_width="300dp"
             android:layout_height="280dp"
             android:layout_marginTop="-60dp"
             android:layout_gravity="start"
             android:paddingLeft="40dp"
-            android:src="@drawable/fox" />
+            android:clickable="true"
+            android:onClick="showPetsDialog"
+            android:background="@android:color/transparent"
+            android:src="@drawable/elephant" />
 
         <ImageButton
             android:id="@+id/sleepButton"
@@ -101,7 +105,6 @@
             android:id="@+id/feedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-70dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
